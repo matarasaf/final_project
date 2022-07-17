@@ -19,7 +19,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
@@ -97,6 +96,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             Toast.makeText(getContext(), "Login successful!", Toast.LENGTH_LONG).show();
+                            //Moving to Home Activity
+                            Intent intent = new Intent (getContext(), HomeActivity.class);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(getContext(), "Login failed!", Toast.LENGTH_LONG).show();
                         }
