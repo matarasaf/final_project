@@ -123,6 +123,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                             //Moving to Home Activity
                             Intent intent = new Intent (getContext(), HomeActivity.class);
                             startActivity(intent);
+                            getActivity().finish();
                         } else {
                             Toast.makeText(getContext(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                         }

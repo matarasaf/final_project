@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:id="@+id/system_item">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profession"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:paddingLeft="15dp"
+            android:text="Profession"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:paddingLeft="15dp"
+            android:text="Location"
+            android:textColor="#958C8C"
+            android:textSize="16sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:paddingLeft="15dp"
+            android:text="Time"
+            android:textColor="#958C8C"
+            android:textSize="16sp">
+
+        </TextView>
+
+    </LinearLayout>
+
+</RelativeLayout>

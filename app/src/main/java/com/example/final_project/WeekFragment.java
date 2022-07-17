@@ -85,5 +85,4 @@ public class WeekFragment extends Fragment implements OnClickListener {
     public interface WeekFragmentListener{
         public void OnClickEvent(String day);
     }
-
 }
