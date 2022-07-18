@@ -11,7 +11,7 @@
     <string name="register">Register</string>
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
-
+<!--
     <string-array name="Week">
         <item> Sunday </item>
         <item> Monday </item>
@@ -129,5 +129,5 @@
         <item>8:55AM - 10:45AM</item>
         <item>10:45AM - 11:15AM</item>
         <item>11:15AM - 1:05PM</item>
-    </string-array>
+    </string-array>-->
 </resources>

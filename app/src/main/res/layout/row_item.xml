@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="100dp"
     android:id="@+id/system_item">
 
     <LinearLayout
@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/profession"
+            android:id="@+id/tvProfession"
             android:layout_width="wrap_content"
             android:layout_height="23dp"
             android:paddingLeft="15dp"
@@ -22,7 +22,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/location"
+            android:id="@+id/tvLocation"
             android:layout_width="wrap_content"
             android:layout_height="23dp"
             android:paddingLeft="15dp"
@@ -33,11 +33,22 @@
         </TextView>
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/tvStartTime"
             android:layout_width="wrap_content"
             android:layout_height="23dp"
             android:paddingLeft="15dp"
-            android:text="Time"
+            android:text="Start Time"
+            android:textColor="#958C8C"
+            android:textSize="16sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:paddingLeft="15dp"
+            android:text="End Time"
             android:textColor="#958C8C"
             android:textSize="16sp">
 

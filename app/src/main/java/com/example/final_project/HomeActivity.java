@@ -2,6 +2,7 @@ package com.example.final_project;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,4 +29,10 @@ public class HomeActivity extends AppCompatActivity implements WeekFragment.Week
         frag.onNewClick(day);
 
     }
+
+/*    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.add, menu);
+        return true;
+    }*/
 }

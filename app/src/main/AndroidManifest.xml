@@ -22,8 +22,7 @@
 
         <activity
             android:name=".HomeActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:exported="true">
         </activity>
 
     </application>
