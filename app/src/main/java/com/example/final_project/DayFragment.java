@@ -12,11 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.sql.Time;
 
 public class DayFragment extends Fragment {
 
@@ -85,8 +88,8 @@ public class DayFragment extends Fragment {
     public static class MyDialogFragment extends DialogFragment {
         String profession;
         String location;
-        String startTime;
-        String endTime;
+        Time startTime;
+        Time endTime;
         String mDay; ////////
 
         DayFragment dayFragment;
@@ -119,11 +122,13 @@ public class DayFragment extends Fragment {
                                  Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.add_layout, container);
             EditText etProfession = (EditText) v.findViewById(R.id.etProfession);
-            EditText etStartTime = (EditText) v.findViewById(R.id.etStartTime);
-            EditText etEndTime = (EditText) v.findViewById(R.id.etEndTime);
+            TimePicker tpStartTime = (TimePicker) v.findViewById(R.id.timePicker_Start);
+            TimePicker tpEndTime = (TimePicker) v.findViewById(R.id.timePicker_End);
             EditText etLocation = (EditText) v.findViewById(R.id.etLocation); ///
             TextView tvAlert = (TextView) v.findViewById(R.id.tvAlert);
             Button btnAdd = (Button)v.findViewById(R.id.bAdd);
+            tpStartTime.setIs24HourView(true);
+            tpEndTime.setIs24HourView(true);
 
             dayFragment = (DayFragment) getFragmentManager().findFragmentByTag("DAYFRAG");
 
@@ -132,17 +137,18 @@ public class DayFragment extends Fragment {
 
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    //Get time from the time picker
+                    final int start_hour = tpStartTime.getHour();
+                    final int start_minute = tpStartTime.getMinute();
+                    final int end_hour = tpEndTime.getHour();
+                    final int end_minute = tpEndTime.getMinute();
+
                     if(TextUtils.isEmpty(etProfession.getText().toString())){
                         tvAlert.setText("Must enter the profession!");
                         tvAlert.setVisibility(View.VISIBLE);
                     }
-                    else if(TextUtils.isEmpty(etStartTime.getText().toString())){
-                        tvAlert.setText("Must enter the start time!");
-                        tvAlert.setVisibility(View.VISIBLE);
-
-                    }
-                    else if(TextUtils.isEmpty(etEndTime.getText().toString())){
-                        tvAlert.setText("Must enter the end time!");
+                    else if((start_hour > end_hour) || ((start_hour == end_hour) && (start_minute > end_minute))){
+                        tvAlert.setText("End time must be after start time!");
                         tvAlert.setVisibility(View.VISIBLE);
                     }
                     else

@@ -7,17 +7,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/MainLayout"
-        android:layout_width="416dp"
-        android:layout_height="416dp"
+        android:layout_width="414dp"
+        android:layout_height="487dp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-2dp">
+        tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:id="@+id/tvProfession"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="44dp"
             android:text="Profession: "
             android:textColor="#000000"
             android:textSize="16sp"
@@ -43,8 +43,8 @@
             android:id="@+id/tvStartTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="60dp"
             android:text="Start Time:"
             android:textColor="#000000"
             android:textSize="16sp"
@@ -52,17 +52,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvProfession" />
 
-        <EditText
-            android:id="@+id/etStartTime"
-            android:layout_width="173dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="124dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/et_custom"
-            android:inputType="time"
-            android:padding="15dp"
-            android:textColor="#000000"
-            android:textSize="14sp"
+        <TimePicker
+            android:id="@+id/timePicker_Start"
+            android:layout_width="263dp"
+            android:layout_height="99dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="16dp"
+            android:numbersInnerTextColor="#000000"
+            android:timePickerMode="spinner"
             app:layout_constraintStart_toStartOf="@+id/tvStartTime"
             app:layout_constraintTop_toBottomOf="@+id/etProfession" />
 
@@ -70,8 +67,8 @@
             android:id="@+id/tvEndTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="84dp"
             android:text="End Time:"
             android:textColor="#000000"
             android:textSize="16sp"
@@ -79,28 +76,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvStartTime" />
 
-        <EditText
-            android:id="@+id/etEndTime"
-            android:layout_width="173dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="124dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/et_custom"
-            android:inputType="time"
-            android:padding="15dp"
-            android:textColor="#000000"
-            android:textSize="14sp"
+        <TimePicker
+            android:id="@+id/timePicker_End"
+            android:layout_width="263dp"
+            android:layout_height="99dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="10dp"
+            android:numbersInnerTextColor="#000000"
+            android:timePickerMode="spinner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tvEndTime"
-            app:layout_constraintTop_toBottomOf="@+id/etStartTime" />
+            app:layout_constraintTop_toBottomOf="@+id/timePicker_Start"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tvLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="50dp"
-            android:text="Location:"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="76dp"
             android:inputType="text"
+            android:text="Location:"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -112,21 +110,21 @@
             android:layout_width="173dp"
             android:layout_height="45dp"
             android:layout_marginStart="124dp"
-            android:layout_marginTop="24dp"
-            android:digits="qwertzuiopasdfghjklyxcvbnm,0,1,2,3,4,5,7,8,9,_,-"
+            android:layout_marginTop="23dp"
             android:background="@drawable/et_custom"
+            android:digits="qwertzuiopasdfghjklyxcvbnm,0,1,2,3,4,5,7,8,9,_,-"
             android:padding="15dp"
             android:textColor="#000000"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/tvLocation"
-            app:layout_constraintTop_toBottomOf="@+id/etEndTime" />
+            app:layout_constraintTop_toBottomOf="@+id/timePicker_End" />
 
         <Button
             android:id="@+id/bAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="164dp"
-            android:layout_marginTop="320dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="380dp"
             android:text="add"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -138,7 +136,6 @@
             android:layout_marginTop="13dp"
             android:layout_marginBottom="16dp"
             android:text=""
-            android:visibility="gone"
             android:textColor="#FF0000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

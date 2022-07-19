@@ -1,11 +1,15 @@
 package com.example.final_project;
 
+import java.sql.Time;
+
 public class Lesson {
     String profession;
     String location;
-    String startTime;
-    String endTime;
+    //String startTime;
+    //String endTime;
     String day;
+    Time startTime;
+    Time endTime;
 
     public String getProfession() {
         return profession;
@@ -23,19 +27,19 @@ public class Lesson {
         this.location = location;
     }
 
-    public String getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 
@@ -47,7 +51,7 @@ public class Lesson {
         this.day = day;
     }
 
-    public Lesson(String profession, String location, String startTime, String endTime, String day){
+    public Lesson(String profession, String location, Time startTime, Time endTime, String day){
         this.profession = profession;
         this.location = location;
         this.startTime = startTime;
