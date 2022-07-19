@@ -1,5 +1,6 @@
 package com.example.final_project;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -19,6 +20,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.sql.Time;
 
 public class DayFragment extends Fragment {
@@ -31,6 +37,11 @@ public class DayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+        //Getting Data
+        getDataFromDb(); //here or in the next func
+        //RecyclerView Data
+        showRecyclerData(); //here or in the next func
+
         return inflater.inflate(R.layout.fragment_day, container,false);
     }
 
@@ -39,6 +50,28 @@ public class DayFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rvDailySystem);
         super.onViewCreated(view, savedInstanceState);
     }
+
+    private void getDataFromDb() {
+        String data = "";
+        try {
+            InputStream inputStream = getContext().getAssets().open(day + ".txt");
+            if(inputStream != null){
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                int size = inputStream.available();
+                char[] buffer = new char[size];
+                inputStreamReader.read(buffer);
+                inputStream.close();
+                data = new String(buffer);
+                String[] dataArray = data.split(",");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showRecyclerData() {
+    }
+
 
     ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -86,12 +119,7 @@ public class DayFragment extends Fragment {
     }
 
     public static class MyDialogFragment extends DialogFragment {
-        String profession;
-        String location;
-        Time startTime;
-        Time endTime;
-        String mDay; ////////
-
+        String mDay;
         DayFragment dayFragment;
 
         /**
@@ -151,12 +179,45 @@ public class DayFragment extends Fragment {
                         tvAlert.setText("End time must be after start time!");
                         tvAlert.setVisibility(View.VISIBLE);
                     }
-                    else
+                    else {
                         tvAlert.setVisibility(View.GONE);
+                        saveDataToDB(etProfession.getText().toString(), etLocation.getText().toString(), start_hour, start_minute, end_hour, end_minute, mDay);
+                        getDialog().dismiss();
+                    }
                 }
             });
 
             return v;
+        }
+
+        private void saveDataToDB(String profession, String location, int startHour,int startMinute, int endHour, int endMinute, String day) {
+            String lesson = profession + "," + location + "," + startHour + "," + startMinute + "," + endHour + "," + endMinute + "\n";
+            StringBuilder data = new StringBuilder();
+
+            try {
+                InputStream inputStream = getContext().openFileInput(day + ".txt");
+                if (inputStream != null) {
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    int size = inputStream.available();
+                    char[] buffer = new char[size];
+                    inputStreamReader.read(buffer);
+                    inputStream.close();
+                    String temp = new String(buffer);
+                    data.append(temp);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            data.append(lesson);
+            try {
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput(day + ".txt",Context.MODE_PRIVATE));
+                outputStreamWriter.write(data.toString());
+                outputStreamWriter.flush();
+                outputStreamWriter.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

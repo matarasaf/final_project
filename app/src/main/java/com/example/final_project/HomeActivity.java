@@ -1,10 +1,16 @@
 package com.example.final_project;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class HomeActivity extends AppCompatActivity implements WeekFragment.WeekFragmentListener{
 
