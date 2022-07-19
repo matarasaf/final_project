@@ -14,10 +14,13 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.FileOutputStream;
@@ -26,23 +29,22 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.sql.Time;
+import java.util.ArrayList;
 
 public class DayFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    //private SystemAdapter systemAdapter;
-    private String day;
+    RecyclerView recyclerView;
+    SystemAdapter systemAdapter;
+
+    String day;
+    AlertDialog addDialog = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        //Getting Data
-        getDataFromDb(); //here or in the next func
-        //RecyclerView Data
-        showRecyclerData(); //here or in the next func
-
-        return inflater.inflate(R.layout.fragment_day, container,false);
+        return inflater.inflate(R.layout.fragment_day, container, false);
     }
 
     @Override
@@ -51,48 +53,22 @@ public class DayFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private void getDataFromDb() {
-        String data = "";
-        try {
-            InputStream inputStream = getContext().getAssets().open(day + ".txt");
-            if(inputStream != null){
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                int size = inputStream.available();
-                char[] buffer = new char[size];
-                inputStreamReader.read(buffer);
-                inputStream.close();
-                data = new String(buffer);
-                String[] dataArray = data.split(",");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void showRecyclerData() {
-    }
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////
-
-    public void onNewClick(String day) {
-        this.day = day;
-        //////////////////////
-    }
-
-/*    //activity connected to my fragment
+    //activity connected to my fragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        systemAdapter = new SystemAdapter(getActivity().getApplication(), getContext(), getActivity());
+        systemAdapter = new SystemAdapter(getActivity().getApplication(), getContext(), getActivity(), day);
         //connection with adapter
         recyclerView.setAdapter(systemAdapter);
         //Present the information as lines and not as a grid
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }*/
+    }
 
+    public void onNewClick(String day) {
+        this.day = day;
+        Toast.makeText(getContext(), "the day is :" + day, Toast.LENGTH_LONG).show();
 
-    ////////////////////////////////////////////////////////////////////////////////////////
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -102,7 +78,7 @@ public class DayFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if((item.getItemId()) == R.id.adding) {
+        if ((item.getItemId()) == R.id.adding) {
             showDialog();
             return true;
         }
@@ -111,121 +87,55 @@ public class DayFragment extends Fragment {
 
     private void showDialog() {
 
-        FragmentManager fm = getFragmentManager();
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = (this).getLayoutInflater();
+        View view = inflater.inflate(R.layout.add_layout, null);
 
-        // Create and show the dialog.
-        DialogFragment newFragment = MyDialogFragment.newInstance(day); //////////////
-        newFragment.show(fm, "dialog");
-    }
+        //Setting all the views
 
-    public static class MyDialogFragment extends DialogFragment {
-        String mDay;
-        DayFragment dayFragment;
+        EditText etProfession = (EditText) view.findViewById(R.id.etProfession);
+        TimePicker tpStartTime = (TimePicker) view.findViewById(R.id.timePicker_Start);
+        TimePicker tpEndTime = (TimePicker) view.findViewById(R.id.timePicker_End);
+        EditText etLocation = (EditText) view.findViewById(R.id.etLocation); ///
+        TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
+        Button btnAdd = (Button) view.findViewById(R.id.bAdd);
+        tpStartTime.setIs24HourView(true);
+        tpEndTime.setIs24HourView(true);
 
-        /**
-         * Create a new instance of MyDialogFragment, providing "num"
-         * as an argument.
-         */
-        static MyDialogFragment newInstance(String day) {
-            MyDialogFragment f = new MyDialogFragment();
+        builder.setView(view);
+        addDialog = builder.create();
+        addDialog.setTitle("Enter the following details:");
+        addDialog.show();
 
-            // Supply num input as an argument.
-            Bundle args = new Bundle();
-            args.putString("day", day); /////////////
-            f.setArguments(args); /////////////
-            return f;
-        }
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Get time from the time picker
+                final int start_hour = tpStartTime.getHour();
+                final int start_minute = tpStartTime.getMinute();
+                final int end_hour = tpEndTime.getHour();
+                final int end_minute = tpEndTime.getMinute();
 
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            mDay = getArguments().getString("day"); //////////
-            int style = DialogFragment.STYLE_NORMAL;
-            int theme = android.R.style.Theme_Holo_Light_Dialog;
-            setStyle(style, theme);
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View v = inflater.inflate(R.layout.add_layout, container);
-            EditText etProfession = (EditText) v.findViewById(R.id.etProfession);
-            TimePicker tpStartTime = (TimePicker) v.findViewById(R.id.timePicker_Start);
-            TimePicker tpEndTime = (TimePicker) v.findViewById(R.id.timePicker_End);
-            EditText etLocation = (EditText) v.findViewById(R.id.etLocation); ///
-            TextView tvAlert = (TextView) v.findViewById(R.id.tvAlert);
-            Button btnAdd = (Button)v.findViewById(R.id.bAdd);
-            tpStartTime.setIs24HourView(true);
-            tpEndTime.setIs24HourView(true);
-
-            dayFragment = (DayFragment) getFragmentManager().findFragmentByTag("DAYFRAG");
-
-            super.onCreate(savedInstanceState);
-            getDialog().setTitle("Enter the following details:");
-
-            btnAdd.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    //Get time from the time picker
-                    final int start_hour = tpStartTime.getHour();
-                    final int start_minute = tpStartTime.getMinute();
-                    final int end_hour = tpEndTime.getHour();
-                    final int end_minute = tpEndTime.getMinute();
-
-                    if(TextUtils.isEmpty(etProfession.getText().toString())){
-                        tvAlert.setText("Must enter the profession!");
-                        tvAlert.setVisibility(View.VISIBLE);
-                    }
-                    else if((start_hour > end_hour) || ((start_hour == end_hour) && (start_minute > end_minute))){
-                        tvAlert.setText("End time must be after start time!");
-                        tvAlert.setVisibility(View.VISIBLE);
-                    }
-                    else {
-                        tvAlert.setVisibility(View.GONE);
-                        saveDataToDB(etProfession.getText().toString(), etLocation.getText().toString(), start_hour, start_minute, end_hour, end_minute, mDay);
-                        getDialog().dismiss();
-                    }
+                if (TextUtils.isEmpty(etProfession.getText().toString())) {
+                    tvAlert.setText("Must enter the profession!");
+                    tvAlert.setVisibility(View.VISIBLE);
+                } else if ((start_hour > end_hour) || ((start_hour == end_hour) && (start_minute > end_minute))) {
+                    tvAlert.setText("End time must be after start time!");
+                    tvAlert.setVisibility(View.VISIBLE);
+                } else {
+                    tvAlert.setVisibility(View.GONE);
+                    MainViewModel myViewModel = MainViewModel.getInstance(getActivity().getApplication(), getContext(), getActivity(), day);
+                    Lesson newLesson = new Lesson(etProfession.getText().toString(),etLocation.getText().toString(), start_hour,start_minute,end_hour,end_minute, day);
+                    myViewModel.addNewLesson(newLesson);
+                    addDialog.dismiss();
                 }
-            });
-
-            return v;
-        }
-
-        private void saveDataToDB(String profession, String location, int startHour,int startMinute, int endHour, int endMinute, String day) {
-            String lesson = profession + "," + location + "," + startHour + "," + startMinute + "," + endHour + "," + endMinute + "\n";
-            StringBuilder data = new StringBuilder();
-
-            try {
-                InputStream inputStream = getContext().openFileInput(day + ".txt");
-                if (inputStream != null) {
-                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                    int size = inputStream.available();
-                    char[] buffer = new char[size];
-                    inputStreamReader.read(buffer);
-                    inputStream.close();
-                    String temp = new String(buffer);
-                    data.append(temp);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
-            data.append(lesson);
-            try {
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput(day + ".txt",Context.MODE_PRIVATE));
-                outputStreamWriter.write(data.toString());
-                outputStreamWriter.flush();
-                outputStreamWriter.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        });
     }
-
-
 
     //the interface of this fragment that include the methods
     public interface DayFragmentListener{
         //put here methods you want to utilize to communicate with the hosting activity
     }
-
 }
