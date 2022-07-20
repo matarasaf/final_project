@@ -35,7 +35,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
     private int selectedRow = -1;
 
     public SystemAdapter(Application application, Context context, Activity activity, String day) {
-        myViewModel = MainViewModel.getInstance(application, context, activity, day);
+        myViewModel = MainViewModel.getInstance(application, context, activity, day); ///// problemL day == null
         lessonsList = myViewModel.getLessons().getValue();
         dataList = myViewModel.getData().getValue();
         this.context = context;
@@ -100,7 +100,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
 
                 for (int i = 0; i < dataList.size(); i++) {
                     if (i != position) {
-                        str.append(dataList.get(i));
+                        str.append(dataList.get(i) + "\n");
                     }
                 }
                 context.deleteFile(lessonsList.get(position).getDay() + ".txt");

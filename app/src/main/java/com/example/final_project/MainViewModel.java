@@ -20,6 +20,8 @@ public class MainViewModel extends AndroidViewModel {
     private static MainViewModel instance;
     String day;
     Context context;
+    Application application;
+
 
     // ******* The observable vars *********************
 
@@ -36,6 +38,7 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
         this.day = day;
         this.context = context;
+        this.application = application;
         init(application);
     }
 
@@ -97,7 +100,8 @@ public class MainViewModel extends AndroidViewModel {
         ArrayList<String> list = new ArrayList<>();
         String data = "";
         try {
-            InputStream inputStream = context.getAssets().open(day + ".txt");
+            InputStream inputStream = context.openFileInput(day + ".txt");
+
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 int size = inputStream.available();
@@ -120,12 +124,12 @@ public class MainViewModel extends AndroidViewModel {
     public ArrayList<Lesson> getLessonsFromDb(ArrayList<String> dataList) {
 
         ArrayList<Lesson> list = new ArrayList<>();
-        String[] temp = new String[7];
+        String[] temp = new String[6];
 
         if(dataList != null) {
             for (int i = 0; i < dataList.size(); i++) {
                 temp = dataList.get(i).split(",");
-                Lesson lesson = new Lesson(temp[0], temp[1], Integer.valueOf(temp[2]), Integer.valueOf(temp[3]), Integer.valueOf(temp[4]), Integer.valueOf(temp[5]), temp[6]);
+                Lesson lesson = new Lesson(temp[0], temp[1], Integer.valueOf(temp[2]), Integer.valueOf(temp[3]), Integer.valueOf(temp[4]), Integer.valueOf(temp[5]), day);
                 list.add(lesson);
             }
         }

@@ -14,6 +14,8 @@ import java.io.InputStream;
 
 public class HomeActivity extends AppCompatActivity implements WeekFragment.WeekFragmentListener{
 
+    String day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,7 @@ public class HomeActivity extends AppCompatActivity implements WeekFragment.Week
     @Override
     public void OnClickEvent(String day) {
         DayFragment frag;
+        this.day = day;
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(R.id.fragContainer, DayFragment.class,null,"DAYFRAG")
@@ -34,6 +37,10 @@ public class HomeActivity extends AppCompatActivity implements WeekFragment.Week
 
         frag.onNewClick(day);
 
+    }
+
+    public String getDay(){
+        return day;
     }
 
 /*    @Override

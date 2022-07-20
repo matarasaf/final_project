@@ -44,7 +44,13 @@ public class DayFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        HomeActivity activity = (HomeActivity) getActivity();
+        day = activity.getDay();
         return inflater.inflate(R.layout.fragment_day, container, false);
+    }
+
+    public void onNewClick(String day) {
+        this.day = day;
     }
 
     @Override
@@ -62,12 +68,6 @@ public class DayFragment extends Fragment {
         recyclerView.setAdapter(systemAdapter);
         //Present the information as lines and not as a grid
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
-
-    public void onNewClick(String day) {
-        this.day = day;
-        Toast.makeText(getContext(), "the day is :" + day, Toast.LENGTH_LONG).show();
-
     }
 
     @Override
