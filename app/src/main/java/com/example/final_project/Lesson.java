@@ -1,8 +1,9 @@
 package com.example.final_project;
 
 import java.sql.Time;
+import java.util.Comparator;
 
-public class Lesson {
+public class Lesson implements Comparable<Lesson> {
     String profession;
     String location;
     String day;
@@ -77,14 +78,30 @@ public class Lesson {
         this.day = day;
     }
 
-    /*public int compare(Lesson other) {
-        if(this.day.)
-        return  this.name.compareTo(other.name);
-    }*/
+    @Override
+    public int compareTo(Lesson other) {
+        int temp;
 
-   /* @Override
-    public String toString() {
-        return name;
-    }*/
+        temp = Integer.valueOf(this.getStartHour()).compareTo(Integer.valueOf(other.getStartHour()));
+        if(temp != 0)
+            return temp;
 
+        //start hour equal
+        temp = Integer.valueOf(this.getStartMinute()).compareTo(Integer.valueOf(other.getStartMinute()));
+        if(temp != 0)
+            return temp;
+
+        //start time equal
+        temp = Integer.valueOf(this.getEndHour()).compareTo(Integer.valueOf(other.getEndHour()));
+        if(temp != 0)
+            return temp;
+
+        //start time and end hour equal
+        temp = Integer.valueOf(this.getEndMinute()).compareTo(Integer.valueOf(other.getEndMinute()));
+        if(temp != 0)
+            return temp;
+
+        //start time and end time equal
+        return 0;
+    }
 }

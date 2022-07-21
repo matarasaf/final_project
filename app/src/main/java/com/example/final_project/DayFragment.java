@@ -128,6 +128,7 @@ public class DayFragment extends Fragment {
                     MainViewModel myViewModel = MainViewModel.getInstance(getActivity().getApplication(), getContext(), getActivity(), day);
                     Lesson newLesson = new Lesson(etProfession.getText().toString(),etLocation.getText().toString(), start_hour,start_minute,end_hour,end_minute, day);
                     myViewModel.addNewLesson(newLesson);
+
                     addDialog.dismiss();
                 }
             }

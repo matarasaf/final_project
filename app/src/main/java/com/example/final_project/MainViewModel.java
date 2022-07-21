@@ -3,7 +3,6 @@ package com.example.final_project;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -15,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainViewModel extends AndroidViewModel {
     private static MainViewModel instance;
@@ -31,7 +31,6 @@ public class MainViewModel extends AndroidViewModel {
 
     private MutableLiveData<ArrayList<Lesson>> lessonLiveData;
     private MutableLiveData<ArrayList<String>> dataLiveData;
-    private MutableLiveData<Lesson> lessonSelected;
     private MutableLiveData<Integer> positionSelected;
 
     public MainViewModel(@NonNull Application application, Context context, Activity activity,String day) {
@@ -69,31 +68,34 @@ public class MainViewModel extends AndroidViewModel {
         return positionSelected;
     }
 
-    public MutableLiveData<Lesson> getSelectedItemCountry() {
-        return lessonSelected;
-    }
-
-    public void setCountrySelect(Lesson lesson) {
-        lessonSelected.setValue(lesson);
-    }
-
-    public void setPositionSelected(Integer index) {
-        positionSelected.setValue(index);
-    }
-
     // This use the setValue
     public void init(Application application) {
         lessonLiveData = new MutableLiveData<>();
         dataLiveData = new MutableLiveData<>();
-        lessonSelected = new MutableLiveData<>();
         positionSelected = new MutableLiveData<>();
         positionSelected.setValue(-1);
 
         ArrayList<String> dataList = getDataFromDb();
         ArrayList<Lesson> lessonList = getLessonsFromDb(dataList);
 
+        Collections.sort(lessonList);
+        dataList = sortStringDataList(lessonList);
+
         lessonLiveData.setValue(lessonList);
         dataLiveData .setValue(dataList);
+    }
+
+    private ArrayList<String> sortStringDataList(ArrayList<Lesson> lessonList) {
+        ArrayList<String> list = new ArrayList<>();
+        String data = "";
+        if (lessonList != null) {
+            for (int i = 0; i < lessonList.size(); i++) {
+                String lessonData = lessonList.get(i).getProfession() + "," + lessonList.get(i).getLocation() + "," + lessonList.get(i).getStartHour() + "," + lessonList.get(i).getStartMinute() + "," + lessonList.get(i).getEndHour() + "," + lessonList.get(i).getEndMinute() + "\n";
+                list.add(lessonData);
+            }
+        }
+
+        return list;
     }
 
     public ArrayList<String> getDataFromDb() {
@@ -143,6 +145,7 @@ public class MainViewModel extends AndroidViewModel {
         String lessonData = newLesson.getProfession() + "," + newLesson.getLocation() + "," + newLesson.getStartHour() + "," + newLesson.getStartMinute() + "," + newLesson.getEndHour() + "," + newLesson.getEndMinute() + "\n";
         StringBuilder data = new StringBuilder();
         String[] tempArr = new String[7];
+        int index;
 
         try {
             InputStream inputStream = context.openFileInput(newLesson.getDay() + ".txt");
@@ -171,10 +174,11 @@ public class MainViewModel extends AndroidViewModel {
         }
 
         lessonsList.add(newLesson);
-        dataList.add(lessonData);
+        Collections.sort(lessonsList);
+        index = lessonsList.indexOf(newLesson);
+        dataList.add(index, lessonData);
 
         setLessonLiveData(lessonsList);
         setDataLiveData(dataList);
-
     }
 }

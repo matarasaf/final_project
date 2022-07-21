@@ -32,6 +32,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
     private ArrayList<String> dataList;
     private MainViewModel myViewModel;
     private Context context;
+    private ViewHolder viewHolder;
     private int selectedRow = -1;
 
     public SystemAdapter(Application application, Context context, Activity activity, String day) {
@@ -39,7 +40,8 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         lessonsList = myViewModel.getLessons().getValue();
         dataList = myViewModel.getData().getValue();
         this.context = context;
-/*//////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////
         //observe data changes
         Observer<ArrayList<Lesson>> observeDataLessonChanges = new Observer<ArrayList<Lesson>>() {
             @Override
@@ -49,17 +51,8 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
             }
         };
 
-        //observe data changes
-        Observer<ArrayList<String>> observeDataStringChanges = new Observer<ArrayList<String>>() {
-            @Override
-            public void onChanged(ArrayList<String> list){
-                dataList = list;
-                notifyDataSetChanged();
-            }
-        };
         myViewModel.getLessons().observe((LifecycleOwner)context, observeDataLessonChanges);
-        myViewModel.getData().observe((LifecycleOwner)context, observeDataStringChanges);
-///////////////////////////////////////////////////////////////////*/
+///////////////////////////////////////////////////////////////////
     }
 
     //class represent one row by inflate.
@@ -69,14 +62,14 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         View lessonView = inflater.inflate(R.layout.row_item, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(lessonView);
+        viewHolder = new ViewHolder(lessonView);
         return viewHolder;
     }
 
     //Put the information about one lesson from the lessonsList
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Lesson lesson = lessonsList.get(position); //////
+        Lesson lesson = lessonsList.get(position);
 
         // OBSERVE
         // Here we will observe and update the selected row
@@ -100,7 +93,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
 
                 for (int i = 0; i < dataList.size(); i++) {
                     if (i != position) {
-                        str.append(dataList.get(i) + "\n");
+                        str.append(dataList.get(i));
                     }
                 }
                 context.deleteFile(lessonsList.get(position).getDay() + ".txt");
