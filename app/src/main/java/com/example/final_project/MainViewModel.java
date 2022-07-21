@@ -33,21 +33,24 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<ArrayList<String>> dataLiveData;
     private MutableLiveData<Integer> positionSelected;
 
-    public MainViewModel(@NonNull Application application, Context context, Activity activity,String day) {
+    public MainViewModel(@NonNull Application application, Context context, Activity activity) {
         super(application);
-        this.day = day;
         this.context = context;
         this.application = application;
         init(application);
     }
 
     // Pay attention that MainViewModel is singleton it helps
-    public static MainViewModel getInstance(Application application, Context context, Activity activity, String day) {
+    public static MainViewModel getInstance(Application application, Context context, Activity activity) {
         if (instance == null) {
-            instance = new MainViewModel(application, context, activity, day);
+            instance = new MainViewModel(application, context, activity);
         }
 
         return instance;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public LiveData<ArrayList<Lesson>> getLessons() {
@@ -126,12 +129,12 @@ public class MainViewModel extends AndroidViewModel {
     public ArrayList<Lesson> getLessonsFromDb(ArrayList<String> dataList) {
 
         ArrayList<Lesson> list = new ArrayList<>();
-        String[] temp = new String[8];
+        String[] temp = new String[7];
 
         if(dataList != null) {
             for (int i = 0; i < dataList.size(); i++) {
                 temp = dataList.get(i).split(",");
-                Lesson lesson = new Lesson(temp[0], temp[1], Integer.valueOf(temp[2]), Integer.valueOf(temp[3]), Integer.valueOf(temp[4]), Integer.valueOf(temp[5]), day, Boolean.valueOf(temp[7]));
+                Lesson lesson = new Lesson(temp[0], temp[1], Integer.valueOf(temp[2]), Integer.valueOf(temp[3]), Integer.valueOf(temp[4]), Integer.valueOf(temp[5]), day, Boolean.valueOf(temp[6]));
                 list.add(lesson);
             }
         }

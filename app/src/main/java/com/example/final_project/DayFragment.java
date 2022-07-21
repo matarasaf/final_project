@@ -44,6 +44,13 @@ public class DayFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.rvDailySystem);
+        ////////////////////////
+        systemAdapter = new SystemAdapter(getActivity().getApplication(), getContext(), getActivity(), day);
+        //connection with adapter
+        recyclerView.setAdapter(systemAdapter);
+        //Present the information as lines and not as a grid
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //////////////////////
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -51,16 +58,16 @@ public class DayFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        systemAdapter = new SystemAdapter(getActivity().getApplication(), getContext(), getActivity(), day);
+/*        systemAdapter = new SystemAdapter(getActivity().getApplication(), getContext(), getActivity(), day);
         //connection with adapter
         recyclerView.setAdapter(systemAdapter);
         //Present the information as lines and not as a grid
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));*/
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.add, menu);
+        inflater.inflate(R.menu.system, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -68,6 +75,14 @@ public class DayFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if ((item.getItemId()) == R.id.adding) {
             showDialog();
+            return true;
+        }
+        if(item.getItemId() == R.id.homeScreen) {
+
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragContainer, new WeekFragment())
+                    .commit();
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -120,7 +135,7 @@ public class DayFragment extends Fragment {
                     tvAlert.setVisibility(View.VISIBLE);
                 } else {
                     tvAlert.setVisibility(View.GONE);
-                    MainViewModel myViewModel = MainViewModel.getInstance(getActivity().getApplication(), getContext(), getActivity(), day);
+                    MainViewModel myViewModel = MainViewModel.getInstance(getActivity().getApplication(), getContext(), getActivity());
                     Lesson newLesson = new Lesson(etProfession.getText().toString(),etLocation.getText().toString(), start_hour,start_minute,end_hour,end_minute, day, attendance);
                     myViewModel.addNewLesson(newLesson);
 

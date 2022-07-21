@@ -19,9 +19,7 @@ public class HomeActivity extends AppCompatActivity implements WeekFragment.Week
         DayFragment frag;
         this.day = day;
         getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
                 .replace(R.id.fragContainer, DayFragment.class,null,"DAYFRAG")
-                .addToBackStack(null)
                 .commit();
         getSupportFragmentManager().executePendingTransactions();
 

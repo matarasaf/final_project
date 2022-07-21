@@ -27,7 +27,9 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
     private int selectedRow = -1;
 
     public SystemAdapter(Application application, Context context, Activity activity, String day) {
-        myViewModel = MainViewModel.getInstance(application, context, activity, day); ///// problemL day == null
+        myViewModel = MainViewModel.getInstance(application, context, activity);
+        myViewModel.setDay(day); ///////////////
+        myViewModel.init(application); ////////////////
         lessonsList = myViewModel.getLessons().getValue();
         dataList = myViewModel.getData().getValue();
         this.context = context;

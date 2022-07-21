@@ -8,5 +8,10 @@
         android:icon="@android:drawable/ic_input_add"
         app:showAsAction="always"
         tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/homeScreen"
+        android:icon="@drawable/home"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
 
 </menu>
