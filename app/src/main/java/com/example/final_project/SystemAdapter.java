@@ -4,25 +4,16 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
@@ -41,7 +32,6 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         dataList = myViewModel.getData().getValue();
         this.context = context;
 
-//////////////////////////////////////////////////////////////////////////
         //observe data changes
         Observer<ArrayList<Lesson>> observeDataLessonChanges = new Observer<ArrayList<Lesson>>() {
             @Override
@@ -52,7 +42,6 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         };
 
         myViewModel.getLessons().observe((LifecycleOwner)context, observeDataLessonChanges);
-///////////////////////////////////////////////////////////////////
     }
 
     //class represent one row by inflate.
@@ -135,6 +124,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         private TextView tvStartTime;
         private TextView tvEndTime;
         private TextView tvLocation;
+        private TextView tvAttendance;
         RelativeLayout row_RelativeLayout;
 
         //constructor
@@ -145,6 +135,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
             tvStartTime = (TextView) itemView.findViewById(R.id.tvStartTime);
             tvEndTime = (TextView) itemView.findViewById(R.id.tvEndTime);
             tvLocation = (TextView) itemView.findViewById(R.id.tvLocation);
+            tvAttendance = (TextView) itemView.findViewById(R.id.tvAttendance);
             row_RelativeLayout = itemView.findViewById(R.id.system_item);
         }
 
@@ -182,15 +173,19 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
                 tvEndTime.setText("End time: " + lesson.getEndHour() + ":" + lesson.getEndMinute());
             }
 
-            if(lesson.getLocation() == ""){
+            if(lesson.getLocation().equals("")){
                 tvLocation.setText("");
             }
             else {
                 tvLocation.setText("Location: " + lesson.getLocation());
             }
-
+            if(lesson.getAttendance()) {
+                tvAttendance.setText("Compulsory attendance! ");
+            }
+            else{
+                tvAttendance.setText("");
+            }
         }
-
     }
 
 }

@@ -1,7 +1,5 @@
 package com.example.final_project;
 
-import java.sql.Time;
-import java.util.Comparator;
 
 public class Lesson implements Comparable<Lesson> {
     String profession;
@@ -11,6 +9,7 @@ public class Lesson implements Comparable<Lesson> {
     int startMinute;
     int endHour;
     int endMinute;
+    boolean attendance;
 
     public String getProfession() {
         return profession;
@@ -68,7 +67,13 @@ public class Lesson implements Comparable<Lesson> {
         this.day = day;
     }
 
-    public Lesson(String profession, String location, int startHour,int startMinute, int endHour, int endMinute, String day){
+    public void setAttendance(boolean attendance) {
+        this.attendance = attendance;
+    }
+
+    public boolean getAttendance() { return attendance; }
+
+    public Lesson(String profession, String location, int startHour,int startMinute, int endHour, int endMinute, String day, boolean attendance){
         this.profession = profession;
         this.location = location;
         this.startHour = startHour;
@@ -76,6 +81,7 @@ public class Lesson implements Comparable<Lesson> {
         this.endHour = endHour;
         this.endMinute = endMinute;
         this.day = day;
+        this.attendance = attendance;
     }
 
     @Override

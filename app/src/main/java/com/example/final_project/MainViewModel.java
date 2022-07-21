@@ -90,7 +90,7 @@ public class MainViewModel extends AndroidViewModel {
         String data = "";
         if (lessonList != null) {
             for (int i = 0; i < lessonList.size(); i++) {
-                String lessonData = lessonList.get(i).getProfession() + "," + lessonList.get(i).getLocation() + "," + lessonList.get(i).getStartHour() + "," + lessonList.get(i).getStartMinute() + "," + lessonList.get(i).getEndHour() + "," + lessonList.get(i).getEndMinute() + "\n";
+                String lessonData = lessonList.get(i).getProfession() + "," + lessonList.get(i).getLocation() + "," + lessonList.get(i).getStartHour() + "," + lessonList.get(i).getStartMinute() + "," + lessonList.get(i).getEndHour() + "," + lessonList.get(i).getEndMinute() + "," + lessonList.get(i).getAttendance() + "\n";
                 list.add(lessonData);
             }
         }
@@ -126,12 +126,12 @@ public class MainViewModel extends AndroidViewModel {
     public ArrayList<Lesson> getLessonsFromDb(ArrayList<String> dataList) {
 
         ArrayList<Lesson> list = new ArrayList<>();
-        String[] temp = new String[6];
+        String[] temp = new String[8];
 
         if(dataList != null) {
             for (int i = 0; i < dataList.size(); i++) {
                 temp = dataList.get(i).split(",");
-                Lesson lesson = new Lesson(temp[0], temp[1], Integer.valueOf(temp[2]), Integer.valueOf(temp[3]), Integer.valueOf(temp[4]), Integer.valueOf(temp[5]), day);
+                Lesson lesson = new Lesson(temp[0], temp[1], Integer.valueOf(temp[2]), Integer.valueOf(temp[3]), Integer.valueOf(temp[4]), Integer.valueOf(temp[5]), day, Boolean.valueOf(temp[7]));
                 list.add(lesson);
             }
         }
@@ -142,9 +142,8 @@ public class MainViewModel extends AndroidViewModel {
     public void addNewLesson(Lesson newLesson) {
         ArrayList<Lesson> lessonsList = getLessons().getValue();
         ArrayList<String> dataList = getData().getValue();
-        String lessonData = newLesson.getProfession() + "," + newLesson.getLocation() + "," + newLesson.getStartHour() + "," + newLesson.getStartMinute() + "," + newLesson.getEndHour() + "," + newLesson.getEndMinute() + "\n";
+        String lessonData = newLesson.getProfession() + "," + newLesson.getLocation() + "," + newLesson.getStartHour() + "," + newLesson.getStartMinute() + "," + newLesson.getEndHour() + "," + newLesson.getEndMinute() + "," + newLesson.getAttendance() + "\n";
         StringBuilder data = new StringBuilder();
-        String[] tempArr = new String[7];
         int index;
 
         try {

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="119dp"
     android:id="@+id/system_item">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#EEF1AD"
         android:orientation="vertical">
 
         <TextView
@@ -54,6 +55,24 @@
 
         </TextView>
 
+        <TextView
+            android:id="@+id/tvAttendance"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:paddingLeft="15dp"
+            android:text="Attendance"
+            android:textColor="#FF0000"
+            android:textSize="16sp">
+
+        </TextView>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
     </LinearLayout>
+
 
 </RelativeLayout>

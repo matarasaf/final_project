@@ -1,6 +1,5 @@
 package com.example.final_project;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -10,26 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.sql.Time;
-import java.util.ArrayList;
 
 public class DayFragment extends Fragment {
 
@@ -97,9 +85,10 @@ public class DayFragment extends Fragment {
         EditText etProfession = (EditText) view.findViewById(R.id.etProfession);
         TimePicker tpStartTime = (TimePicker) view.findViewById(R.id.timePicker_Start);
         TimePicker tpEndTime = (TimePicker) view.findViewById(R.id.timePicker_End);
-        EditText etLocation = (EditText) view.findViewById(R.id.etLocation); ///
+        EditText etLocation = (EditText) view.findViewById(R.id.etLocation);
         TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
         Button btnAdd = (Button) view.findViewById(R.id.bAdd);
+        CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBox) ;
         tpStartTime.setIs24HourView(true);
         tpEndTime.setIs24HourView(true);
 
@@ -116,6 +105,12 @@ public class DayFragment extends Fragment {
                 final int start_minute = tpStartTime.getMinute();
                 final int end_hour = tpEndTime.getHour();
                 final int end_minute = tpEndTime.getMinute();
+                boolean attendance;
+
+                if(checkBox.isChecked())
+                    attendance = true;
+                else
+                    attendance = false;
 
                 if (TextUtils.isEmpty(etProfession.getText().toString())) {
                     tvAlert.setText("Must enter the profession!");
@@ -126,7 +121,7 @@ public class DayFragment extends Fragment {
                 } else {
                     tvAlert.setVisibility(View.GONE);
                     MainViewModel myViewModel = MainViewModel.getInstance(getActivity().getApplication(), getContext(), getActivity(), day);
-                    Lesson newLesson = new Lesson(etProfession.getText().toString(),etLocation.getText().toString(), start_hour,start_minute,end_hour,end_minute, day);
+                    Lesson newLesson = new Lesson(etProfession.getText().toString(),etLocation.getText().toString(), start_hour,start_minute,end_hour,end_minute, day, attendance);
                     myViewModel.addNewLesson(newLesson);
 
                     addDialog.dismiss();
