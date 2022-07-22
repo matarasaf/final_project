@@ -7,8 +7,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-//public class HomeActivity extends AppCompatActivity implements WeekFragment.WeekFragmentListener{
-public class HomeActivity extends MainActivity implements WeekFragment.WeekFragmentListener{
+public class HomeActivity extends AppCompatActivity implements WeekFragment.WeekFragmentListener{
+
+    String day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class HomeActivity extends MainActivity implements WeekFragment.WeekFragm
     @Override
     public void OnClickEvent(String day) {
         DayFragment frag;
+        this.day = day;
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(R.id.fragContainer, DayFragment.class,null,"DAYFRAG")
@@ -35,4 +37,9 @@ public class HomeActivity extends MainActivity implements WeekFragment.WeekFragm
         frag.onNewClick(day);
 
     }
+
+    public String getDay(){
+        return day;
+    }
+
 }

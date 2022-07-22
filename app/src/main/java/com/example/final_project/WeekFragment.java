@@ -71,7 +71,7 @@ public class WeekFragment extends Fragment implements OnClickListener {
 
     @Override
     public void onClick(View view) {
-        String day = "";
+        String day;
 
         switch(view.getId()){
             case R.id.bSunday:
@@ -92,6 +92,8 @@ public class WeekFragment extends Fragment implements OnClickListener {
             case R.id.bFriday:
                 day = "Friday";
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + view.getId());
         }
         listener.OnClickEvent(day);
     }

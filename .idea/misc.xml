@@ -7,6 +7,7 @@
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/drawable-v24/rounded.xml" value="0.217" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/drawable/btn_custom.xml" value="0.2555" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/drawable/et_custom.xml" value="0.2555" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/drawable/home.xml" value="0.2555" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/drawable/ic_arrow_left.xml" value="0.2555" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/drawable/ic_arrow_right.xml" value="0.2555" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_day_detail.xml" value="0.25" />
@@ -15,13 +16,20 @@
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_week.xml" value="0.2" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_week_single_item.xml" value="0.25" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/add__layout.xml" value="0.25" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/add_layout.xml" value="0.22" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/day_detail_single_item.xml" value="0.25" />
-        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/fragment_day.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/fragment_day.xml" value="0.264" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/fragment_login.xml" value="0.3435897435897436" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/fragment_register.xml" value="0.33" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/fragment_week.xml" value="0.25" />
-        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/row_item.xml" value="0.25" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/row_item.xml" value="0.4" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/layout/week.xml" value="0.25" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/menu/add.xml" value="0.2" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/menu/exit.xml" value="0.25" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/menu/system.xml" value="0.25" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/menu/systemMenu.xml" value="0.25" />
+        <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/menu/system_menu.xml" value="0.25" />
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2555" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_home.xml" value="0.134375" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
