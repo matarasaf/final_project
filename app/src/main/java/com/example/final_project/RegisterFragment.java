@@ -1,6 +1,8 @@
 package com.example.final_project;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         mAuth = FirebaseAuth.getInstance();
 
         // Inflate the layout for this fragment
@@ -43,6 +46,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
         editTextFullName = (EditText) view.findViewById(R.id.et_name);
         editTextEmail = (EditText) view.findViewById(R.id.et_email);
         editTextPassword = (EditText) view.findViewById(R.id.et_password);
