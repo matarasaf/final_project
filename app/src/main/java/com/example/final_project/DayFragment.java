@@ -44,7 +44,6 @@ public class DayFragment extends Fragment {
             getContext().setTheme(R.style.large_text);*/
 
 
-        return inflater.inflate(R.layout.fragment_day, container,false);
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         HomeActivity activity = (HomeActivity) getActivity();
