@@ -1,6 +1,7 @@
 package com.example.final_project;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,20 @@ public class WeekFragment extends Fragment implements OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
 
+      /*  SharedPreferences sharedPreferences = getActivity().getSharedPreferences("FONT_SIZE", Context.MODE_PRIVATE);
+        //If size not declare initialize to empty
+        String size = sharedPreferences.getString("SIZE", "");
+        if (size.equals(" small "))
+            getContext().setTheme(R.style.small_text);
+        else if (size.equals(" medium "))
+            getContext().setTheme(R.style.medium_text);
+        else if (size.equals(" large "))
+            getContext().setTheme(R.style.large_text);*/
+
+
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_week, container,false);
     }
 
