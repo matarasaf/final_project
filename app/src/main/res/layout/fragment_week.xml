@@ -20,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="Sunday"
-        android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
@@ -28,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="Monday"
-        android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
@@ -36,7 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="Tuesday"
-        android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
@@ -44,7 +41,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="Wednesday"
-        android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
@@ -52,7 +48,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="Thursday"
-        android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
@@ -60,7 +55,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="Friday"
-        android:textSize="24sp"
         android:textStyle="bold" />
   </LinearLayout>
 </RelativeLayout>
