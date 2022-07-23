@@ -33,12 +33,16 @@
         <entry key="..\:/Users/Matar/AndroidStudioProjects/final_project/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2555" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_home.xml" value="0.134375" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_settings.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/activity_settings.xml" value="0.25" />
+        <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/add_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/edit_layout.xml" value="0.1828125" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/fragment_day.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/fragment_login.xml" value="0.15806159420289856" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/fragment_register.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/fragment_week.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/layout/row_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/menu/home_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/danie/AndroidStudioProjects/final_project/app/src/main/res/menu/system.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
