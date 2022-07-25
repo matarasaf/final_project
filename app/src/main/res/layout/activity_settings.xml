@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     >
 
 
@@ -15,9 +16,9 @@
         android:layout_margin="20dp"
         android:gravity="center"
         android:text="font_size"
-        android:textColor="#3C55E1"
-        android:textStyle="bold"
-        android:textSize="24sp"/>
+        android:textColor="#424039"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView"
@@ -25,9 +26,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="25dp"
+        android:gravity="center"
         android:text="Use the seekbar to change the font size"
-        android:textColor="#8697F8"
+        android:textColor="#424039"
         android:textStyle="bold" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +50,10 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:text="Small"
+            android:textColor="@color/white"
+
             android:textStyle="bold" />
+
 
         <SeekBar
             android:id="@+id/seekBar"
@@ -64,24 +75,27 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:text="Large"
+            android:textColor="@color/white"
+
             android:textStyle="bold" />
 
     </LinearLayout>
-
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="22dp"
         android:layout_marginTop="16dp"
-        android:background="@color/white" />
+         />
     <TextView
         android:id="@+id/textView_font"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Size of font is:"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:id="@+id/textView_currentFont"
@@ -89,25 +103,26 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Medium"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        />
 
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
-        android:layout_height="127dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white" />
+        android:layout_height="74dp"
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/button_LogOut"
         style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="122dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="24dp"
-        android:background="#7373ED"
+        android:layout_margin="10dp"
+        android:background="#3F51B5"
         android:text="log_out"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/white"
         tools:ignore="SpeakableTextPresentCheck">
 
     </Button>
