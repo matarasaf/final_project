@@ -29,9 +29,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private Button btnRegister;
     private ProgressBar progressBar;
 
-    public RegisterFragment() {
+    /*public RegisterFragment() {
         // Required empty public constructor
-    }
+    }*/
 
 
     @Override
@@ -117,6 +117,11 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         }
 
         progressBar.setVisibility(View.VISIBLE);
+
+        //A new createAccount method that receives an email address and password,
+        // validates them, and then creates a new user with
+        // the createUserWithEmailAndPassword method
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
