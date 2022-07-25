@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".WeekFragment">
+    tools:context=".WeekFragment"
+    android:background="@drawable/background">
 
 
   <LinearLayout
@@ -19,42 +20,54 @@
         android:id="@+id/bSunday"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@drawable/btn_background"
         android:text="Sunday"
+        android:textColor="#252020"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/bMonday"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@drawable/btn_background"
         android:text="Monday"
+        android:textColor="#252020"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/bTuesday"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@drawable/btn_background"
         android:text="Tuesday"
+        android:textColor="#252020"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/bWednesday"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@drawable/btn_background"
         android:text="Wednesday"
+        android:textColor="#252020"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/bThursday"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@drawable/btn_background"
         android:text="Thursday"
+        android:textColor="#252020"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/bFriday"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@drawable/btn_background"
         android:text="Friday"
+        android:textColor="#252020"
         android:textStyle="bold" />
   </LinearLayout>
 </RelativeLayout>
