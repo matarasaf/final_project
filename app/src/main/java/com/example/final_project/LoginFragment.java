@@ -40,6 +40,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //initialize FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
 
         return inflater.inflate(R.layout.fragment_login, container, false);
@@ -97,6 +98,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
 
         progressBar.setVisibility(View.VISIBLE);
+
+        //Create a new login method that accepts an email address and password,
+        // validates them, and then signInWithEmailAndPassword signIn
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
