@@ -33,16 +33,6 @@ public class DayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       /* SharedPreferences sharedPreferences = getActivity().getSharedPreferences("FONT_SIZE", Context.MODE_PRIVATE);
-        //If size not declare initialize to empty
-        String size = sharedPreferences.getString("SIZE", "");
-        if (size.equals(" small "))
-            getContext().setTheme(R.style.small_text);
-        else if (size.equals(" medium "))
-            getContext().setTheme(R.style.medium_text);
-        else if (size.equals(" large "))
-            getContext().setTheme(R.style.large_text);*/
-
 
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
@@ -124,6 +114,7 @@ public class DayFragment extends Fragment {
         builder.setView(view);
         addDialog = builder.create();
         addDialog.setTitle("Enter the following details:");
+
         addDialog.show();
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -149,9 +140,9 @@ public class DayFragment extends Fragment {
                     tvAlert.setVisibility(View.VISIBLE);
                 } else {
                     tvAlert.setVisibility(View.GONE);
-                    MainViewModel myViewModel = MainViewModel.getInstance(getActivity().getApplication(), getContext(), getActivity());
+                    MainViewModel myViewModel = MainViewModel.getInstance(getActivity().getApplication());
                     Lesson newLesson = new Lesson(etProfession.getText().toString(),etLocation.getText().toString(), start_hour,start_minute,end_hour,end_minute, day, attendance);
-                    myViewModel.addNewLesson(newLesson);
+                    myViewModel.addNewLesson(getContext(),newLesson);
 
                     addDialog.dismiss();
                 }
