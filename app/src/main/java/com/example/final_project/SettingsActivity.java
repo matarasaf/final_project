@@ -88,7 +88,6 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
                 SettingsActivity.this.finish();
 
-                //recreate();
 
             }
 
