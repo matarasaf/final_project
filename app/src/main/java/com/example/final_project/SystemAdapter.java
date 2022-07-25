@@ -37,7 +37,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
     private String day;
 
     public SystemAdapter(Application application, Context context, Activity activity, String day) {
-        myViewModel = MainViewModel.getInstance(application, context, activity);
+        myViewModel = MainViewModel.getInstance(application);
         myViewModel.setDay(day); ///////////////
         myViewModel.init(application); ////////////////
         lessonsList = myViewModel.getLessons().getValue();
@@ -105,33 +105,9 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         holder.row_RelativeLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                int position = holder.getAdapterPosition();
-                StringBuilder str = new StringBuilder();
-                dataList = myViewModel.getData().getValue();
-
-                //delete lesson from dataList
-                for (int i = 0; i < dataList.size(); i++) {
-                    if (i != position) {
-                        str.append(dataList.get(i));
-                    }
-                }
-                context.deleteFile(lessonsList.get(position).getDay() + ".txt");
-
-                try {
-                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(lessonsList.get(position).getDay() + ".txt", Context.MODE_PRIVATE));
-                    outputStreamWriter.write(str.toString());
-                    outputStreamWriter.flush();
-                    outputStreamWriter.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                dataList.remove(position);
-                lessonsList.remove(position);
-
+                deleteLesson(holder);
                 myViewModel.setLessonLiveData(lessonsList);
                 myViewModel.setDataLiveData(dataList);
-
                 notifyDataSetChanged();
 
                 return true;
@@ -139,6 +115,33 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         });
 
         holder.bindData(lesson);//Bind the data to the raw item
+    }
+
+    public void deleteLesson(ViewHolder holder){
+        int position = holder.getAdapterPosition();
+        StringBuilder str = new StringBuilder();
+        dataList = myViewModel.getData().getValue();
+
+        //delete lesson from dataList
+        for (int i = 0; i < dataList.size(); i++) {
+            if (i != position) {
+                str.append(dataList.get(i));
+            }
+        }
+        context.deleteFile(lessonsList.get(position).getDay() + ".txt");
+
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(lessonsList.get(position).getDay() + ".txt", Context.MODE_PRIVATE));
+            outputStreamWriter.write(str.toString());
+            outputStreamWriter.flush();
+            outputStreamWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        dataList.remove(position);
+        lessonsList.remove(position);
+
     }
 
 
@@ -204,38 +207,14 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
                     tvAlert.setVisibility(View.VISIBLE);
                 } else {
                     tvAlert.setVisibility(View.GONE);
-                    MainViewModel myViewModel = MainViewModel.getInstance(activity.getApplication(),context, activity);
+                    MainViewModel myViewModel = MainViewModel.getInstance(activity.getApplication());
                     Lesson newLesson = new Lesson(etProfession.getText().toString(),etLocation.getText().toString(), start_hour,start_minute,end_hour,end_minute, day, attendance);
 
 
-                    ///////////START- Deleting an existing class -START/////////////////////////
+                    ///////////Deleting an existing class/////////////////////////
+                    deleteLesson(holder);
 
-                    int position = holder.getAdapterPosition();
-                    StringBuilder str = new StringBuilder();
-                    dataList = myViewModel.getData().getValue();
-
-                    for (int i = 0; i < dataList.size(); i++) {
-                        if (i != position) {
-                            str.append(dataList.get(i));
-                        }
-                    }
-                    context.deleteFile(lessonsList.get(position).getDay() + ".txt");
-
-                    try {
-                        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(lessonsList.get(position).getDay() + ".txt", Context.MODE_PRIVATE));
-                        outputStreamWriter.write(str.toString());
-                        outputStreamWriter.flush();
-                        outputStreamWriter.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    dataList.remove(position);
-                    lessonsList.remove(position);
-
-                    ///////////END- Deleting an existing class -END/////////////////////////
-
-                    myViewModel.addNewLesson(newLesson);
+                    myViewModel.addNewLesson(holder.itemView.getContext(), newLesson);
                     myViewModel.setLessonLiveData(lessonsList);
                     myViewModel.setDataLiveData(dataList);
                     submitDialog.dismiss();
