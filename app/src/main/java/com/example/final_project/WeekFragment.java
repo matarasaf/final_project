@@ -34,17 +34,6 @@ public class WeekFragment extends Fragment implements OnClickListener {
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-      /*  SharedPreferences sharedPreferences = getActivity().getSharedPreferences("FONT_SIZE", Context.MODE_PRIVATE);
-        //If size not declare initialize to empty
-        String size = sharedPreferences.getString("SIZE", "");
-        if (size.equals(" small "))
-            getContext().setTheme(R.style.small_text);
-        else if (size.equals(" medium "))
-            getContext().setTheme(R.style.medium_text);
-        else if (size.equals(" large "))
-            getContext().setTheme(R.style.large_text);*/
-
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_week, container,false);
     }
