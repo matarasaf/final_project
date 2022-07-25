@@ -3,131 +3,148 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/MainLayout"
-        android:layout_width="412dp"
-        android:layout_height="537dp"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="2dp">
 
         <TextView
             android:id="@+id/tvProfession"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="44dp"
             android:text="Profession: "
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="@color/white"
+
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.047"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.101" />
 
         <EditText
             android:id="@+id/etProfession"
             android:layout_width="173dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="124dp"
-            android:layout_marginTop="24dp"
+            android:layout_height="60dp"
             android:background="@drawable/et_custom"
             android:digits="qwertzuiopasdfghjklyxcvbnm,0,1,2,3,4,5,6,7,8,9,_,-"
             android:padding="15dp"
             android:textColor="#000000"
-            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.715"
             app:layout_constraintStart_toStartOf="@+id/tvProfession"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.079"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/tvStartTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="60dp"
             android:text="Start Time:"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="@color/white"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.046"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvProfession" />
+            app:layout_constraintTop_toBottomOf="@+id/tvProfession"
+            app:layout_constraintVertical_bias="0.148" />
 
         <TimePicker
             android:id="@+id/timePicker_Start"
             android:layout_width="263dp"
             android:layout_height="99dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="16dp"
-            android:numbersInnerTextColor="#000000"
+            android:numbersTextColor="#320101"
             android:timePickerMode="spinner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.881"
             app:layout_constraintStart_toStartOf="@+id/tvStartTime"
-            app:layout_constraintTop_toBottomOf="@+id/etProfession" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.241" />
 
         <TextView
             android:id="@+id/tvEndTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="84dp"
             android:text="End Time:"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="@color/white"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.082"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvStartTime" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.479" />
 
         <TimePicker
             android:id="@+id/timePicker_End"
             android:layout_width="263dp"
             android:layout_height="99dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="10dp"
+
             android:numbersInnerTextColor="#000000"
+            android:numbersTextColor="#320101"
             android:timePickerMode="spinner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.868"
             app:layout_constraintStart_toStartOf="@+id/tvEndTime"
-            app:layout_constraintTop_toBottomOf="@+id/timePicker_Start"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.476" />
 
         <TextView
             android:id="@+id/tvLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="76dp"
+            android:layout_width="84dp"
+            android:layout_height="48dp"
             android:inputType="text"
             android:text="Location:"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="@color/white"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.057"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEndTime" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEndTime"
+            app:layout_constraintVertical_bias="0.33" />
 
         <EditText
             android:id="@+id/etLocation"
             android:layout_width="173dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="124dp"
-            android:layout_marginTop="23dp"
+            android:layout_height="60dp"
             android:background="@drawable/et_custom"
             android:digits="qwertzuiopasdfghjklyxcvbnm,0,1,2,3,4,5,7,8,9,_,-"
             android:padding="15dp"
             android:textColor="#000000"
-            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.711"
             app:layout_constraintStart_toStartOf="@+id/tvLocation"
-            app:layout_constraintTop_toBottomOf="@+id/timePicker_End" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.679"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/bAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="156dp"
-            android:layout_marginTop="440dp"
-            android:text="add"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:background="@drawable/btn_background"
+            android:text="ADD"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.968" />
 
         <TextView
             android:id="@+id/tvAlert"
@@ -140,22 +157,24 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bAdd"
             app:layout_constraintVertical_bias="1.0" />
 
         <CheckBox
             android:id="@+id/checkBox"
-            android:defaultValue="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="40dp"
+            android:defaultValue="false"
+            android:minHeight="48dp"
             android:text="Compulsory attendance"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="@color/white"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.764" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
