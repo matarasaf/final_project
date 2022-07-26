@@ -6,17 +6,25 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import java.util.ArrayList;
 
-
 public class MainActivity extends AppCompatActivity {
+
+    BatteryBroadcastReceiver receiver;
+
+    public static final String BATTERY_LOW = "android.intent.action.ACTION_BATTERY_LOW";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        receiver = new BatteryBroadcastReceiver();
+        registerReceiver(receiver,new IntentFilter(Intent.ACTION_BATTERY_CHANGED)); ////////////////
 
         ViewPager viewPager = findViewById(R.id.viewPager);
 
@@ -26,6 +34,25 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(pagerAdapter);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(receiver);
+    }
+
+/*    @Override
+    public void onResume() {
+        super.onResume();
+        IntentFilter filter =new IntentFilter(BatteryManager.EXTRA_BATTERY_LOW);
+        filter.addAction(Intent.ACTION_BATTERY_LOW);
+        this.registerReceiver(receiver, filter);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
+    }*/
 
     class AuthenticationPagerAdapter extends FragmentPagerAdapter {
         private ArrayList<Fragment> fragmentList = new ArrayList<>();
