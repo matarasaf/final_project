@@ -8,9 +8,31 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+    -->
+
+    <!-- SMALL FONT SIZE -->
+    <style name="small_text" parent="AppTheme">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <!-- MEDIUM FONT SIZE -->
+    <style name="medium_text" parent="AppTheme">
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="medium_list_text"></style>
+
+
+    <!-- LARGE FONT SIZE -->
+    <style name="large_text" parent="AppTheme">
+        <item name="android:textSize">23sp</item>
     </style>
 
 </resources>

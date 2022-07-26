@@ -1,6 +1,7 @@
 package com.example.final_project;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,9 @@ public class WeekFragment extends Fragment implements OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
 
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_week, container,false);
     }
 

@@ -1,26 +1,32 @@
 package com.example.final_project;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Application;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 
 public class MainViewModel extends AndroidViewModel {
     private static MainViewModel instance;
     String day;
-    Context context;
-    Application application;
 
 
     // ******* The observable vars *********************
@@ -33,17 +39,15 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<ArrayList<String>> dataLiveData;
     private MutableLiveData<Integer> positionSelected;
 
-    public MainViewModel(@NonNull Application application, Context context, Activity activity) {
+    public MainViewModel(@NonNull Application application) {
         super(application);
-        this.context = context;
-        this.application = application;
         init(application);
     }
 
     // Pay attention that MainViewModel is singleton it helps
-    public static MainViewModel getInstance(Application application, Context context, Activity activity) {
+    public static MainViewModel getInstance(Application application) {
         if (instance == null) {
-            instance = new MainViewModel(application, context, activity);
+            instance = new MainViewModel(application);
         }
 
         return instance;
@@ -78,71 +82,19 @@ public class MainViewModel extends AndroidViewModel {
         positionSelected = new MutableLiveData<>();
         positionSelected.setValue(-1);
 
-        ArrayList<String> dataList = getDataFromDb();
-        ArrayList<Lesson> lessonList = getLessonsFromDb(dataList);
+        ArrayList<String> dataList = FileManager.getDataFromDb(application.getApplicationContext(),day);
+        ArrayList<Lesson> lessonList = FileManager.getLessonsFromDb(dataList,day);
 
         Collections.sort(lessonList);
-        dataList = sortStringDataList(lessonList);
+        dataList = FileManager.sortStringDataList(lessonList);
 
         lessonLiveData.setValue(lessonList);
         dataLiveData .setValue(dataList);
     }
 
-    private ArrayList<String> sortStringDataList(ArrayList<Lesson> lessonList) {
-        ArrayList<String> list = new ArrayList<>();
-        String data = "";
-        if (lessonList != null) {
-            for (int i = 0; i < lessonList.size(); i++) {
-                String lessonData = lessonList.get(i).getProfession() + "," + lessonList.get(i).getLocation() + "," + lessonList.get(i).getStartHour() + "," + lessonList.get(i).getStartMinute() + "," + lessonList.get(i).getEndHour() + "," + lessonList.get(i).getEndMinute() + "," + lessonList.get(i).getAttendance() + "\n";
-                list.add(lessonData);
-            }
-        }
 
-        return list;
-    }
 
-    public ArrayList<String> getDataFromDb() {
-        ArrayList<String> list = new ArrayList<>();
-        String data = "";
-        try {
-            InputStream inputStream = context.openFileInput(day + ".txt");
-
-            if (inputStream != null) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                int size = inputStream.available();
-                char[] buffer = new char[size];
-                inputStreamReader.read(buffer);
-                inputStream.close();
-                data = new String(buffer);
-                String[] dataArray = data.split("\n");
-                for (int i = 0; i < dataArray.length; i++) {
-                    list.add(dataArray[i]);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return list;
-    }
-
-    public ArrayList<Lesson> getLessonsFromDb(ArrayList<String> dataList) {
-
-        ArrayList<Lesson> list = new ArrayList<>();
-        String[] temp = new String[7];
-
-        if(dataList != null) {
-            for (int i = 0; i < dataList.size(); i++) {
-                temp = dataList.get(i).split(",");
-                Lesson lesson = new Lesson(temp[0], temp[1], Integer.valueOf(temp[2]), Integer.valueOf(temp[3]), Integer.valueOf(temp[4]), Integer.valueOf(temp[5]), day, Boolean.valueOf(temp[6]));
-                list.add(lesson);
-            }
-        }
-
-        return list;
-    }
-
-    public void addNewLesson(Lesson newLesson) {
+    public void addNewLesson(Context context,Lesson newLesson) {
         ArrayList<Lesson> lessonsList = getLessons().getValue();
         ArrayList<String> dataList = getData().getValue();
         String lessonData = newLesson.getProfession() + "," + newLesson.getLocation() + "," + newLesson.getStartHour() + "," + newLesson.getStartMinute() + "," + newLesson.getEndHour() + "," + newLesson.getEndMinute() + "," + newLesson.getAttendance() + "\n";
@@ -174,6 +126,9 @@ public class MainViewModel extends AndroidViewModel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        if(newLesson.getAttendance())
+            NotificationAppManager.setLessonNotification(context,newLesson);
 
         lessonsList.add(newLesson);
         Collections.sort(lessonsList);

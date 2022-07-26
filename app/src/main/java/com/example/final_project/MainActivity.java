@@ -1,30 +1,38 @@
 package com.example.final_project;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
 
-    BatteryBroadcastReceiver receiver;
-
-    public static final String BATTERY_LOW = "android.intent.action.ACTION_BATTERY_LOW";
-
+public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        receiver = new BatteryBroadcastReceiver();
-        registerReceiver(receiver,new IntentFilter(Intent.ACTION_BATTERY_CHANGED)); ////////////////
+        setContentView(R.layout.activity_main);
 
         ViewPager viewPager = findViewById(R.id.viewPager);
 
@@ -33,26 +41,35 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(new RegisterFragment());
 
         viewPager.setAdapter(pagerAdapter);
+
+
+
+        // Sets the alarm for all the lessons on the system
+        // on first app entrance
+        setLessonsAlarms();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        unregisterReceiver(receiver);
-    }
 
-/*    @Override
-    public void onResume() {
-        super.onResume();
-        IntentFilter filter =new IntentFilter(BatteryManager.EXTRA_BATTERY_LOW);
-        filter.addAction(Intent.ACTION_BATTERY_LOW);
-        this.registerReceiver(receiver, filter);
+    private void setLessonsAlarms(){
+        String[] daysInWeek = {
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+
+        };
+        // for each day of week set lesson alarms
+        for(String day  : daysInWeek) {
+            ArrayList<String> lessonData = FileManager.getDataFromDb(this,day);
+            ArrayList<Lesson> lessons = FileManager.getLessonsFromDb(lessonData,day);
+            for(Lesson lesson : lessons) {
+                if(lesson.getAttendance())
+                    NotificationAppManager.setLessonNotification(this, lesson);
+            }
+        }
     }
-    @Override
-    public void onPause() {
-        super.onPause();
-        unregisterReceiver(receiver);
-    }*/
 
     class AuthenticationPagerAdapter extends FragmentPagerAdapter {
         private ArrayList<Fragment> fragmentList = new ArrayList<>();
@@ -75,4 +92,8 @@ public class MainActivity extends AppCompatActivity {
             fragmentList.add(fragment);
         }
     }
+
+
+
+
 }

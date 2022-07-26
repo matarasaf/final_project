@@ -1,65 +1,45 @@
 package com.example.final_project;
 
-import android.content.BroadcastReceiver;
+import android.app.AlarmManager;
+import android.app.AliasActivity;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.BatteryManager;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomeActivity extends AppCompatActivity implements WeekFragment.WeekFragmentListener{
-
-    BatteryBroadcastReceiver receiver;
-
-    public static final String BATTERY_LOW = "android.intent.action.ACTION_BATTERY_LOW";
-
+public class HomeActivity extends BaseActivity implements WeekFragment.WeekFragmentListener{
     String day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        receiver = new BatteryBroadcastReceiver();
-        registerReceiver(receiver,new IntentFilter(Intent.ACTION_BATTERY_CHANGED)); ////////////////
-
+        //Content View
         setContentView(R.layout.activity_home);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        unregisterReceiver(receiver);
-    }
- /*   @Override
-    public void onResume() {
-        super.onResume();
-        IntentFilter filter = new IntentFilter(BatteryManager.EXTRA_BATTERY_LOW);
-        filter.addAction(Intent.ACTION_BATTERY_LOW);
-        this.registerReceiver(receiver, filter);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        unregisterReceiver(receiver);
-    }
-*/
 
     @Override
     public void OnClickEvent(String day) {
         DayFragment frag;
         this.day = day;
         getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
                 .replace(R.id.fragContainer, DayFragment.class,null,"DAYFRAG")
+                .addToBackStack(null)
                 .commit();
-        getSupportFragmentManager().executePendingTransactions();
-
+        try {
+            getSupportFragmentManager().executePendingTransactions();
+        }catch (IndexOutOfBoundsException e) { e.printStackTrace();}
         frag = (DayFragment) getSupportFragmentManager().findFragmentByTag("DAYFRAG");
-
         frag.onNewClick(day);
-
     }
+
 
     public String getDay(){
         return day;
