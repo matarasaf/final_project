@@ -1,7 +1,5 @@
 package com.example.final_project;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -22,7 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DayFragment extends Fragment {
-
 
     RecyclerView recyclerView;
     SystemAdapter systemAdapter;
@@ -48,25 +45,12 @@ public class DayFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.rvDailySystem);
-        ////////////////////////
         systemAdapter = new SystemAdapter(getActivity().getApplication(), getContext(), getActivity(), day);
         //connection with adapter
         recyclerView.setAdapter(systemAdapter);
         //Present the information as lines and not as a grid
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //////////////////////
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    //activity connected to my fragment
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-/*        systemAdapter = new SystemAdapter(getActivity().getApplication(), getContext(), getActivity(), day);
-        //connection with adapter
-        recyclerView.setAdapter(systemAdapter);
-        //Present the information as lines and not as a grid
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));*/
     }
 
     @Override
@@ -100,7 +84,6 @@ public class DayFragment extends Fragment {
         View view = inflater.inflate(R.layout.add_layout, null);
 
         //Setting all the views
-
         EditText etProfession = (EditText) view.findViewById(R.id.etProfession);
         TimePicker tpStartTime = (TimePicker) view.findViewById(R.id.timePicker_Start);
         TimePicker tpEndTime = (TimePicker) view.findViewById(R.id.timePicker_End);

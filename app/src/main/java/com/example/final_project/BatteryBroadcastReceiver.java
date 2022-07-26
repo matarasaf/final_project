@@ -13,12 +13,7 @@ public class BatteryBroadcastReceiver extends BroadcastReceiver {
         int percentage = intent.getIntExtra("level", 0);
 
         if(percentage != 0){
-            Toast.makeText(context,percentage + "%" , Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"Battery percentage: " + percentage + "%" , Toast.LENGTH_LONG).show();
         }
-
-
-/*
-        Toast.makeText(context, "Low battery!\n" + "Check if there are lessons with compulsory attendance coming soon.", Toast.LENGTH_LONG).show();
-*/
     }
 }

@@ -1,31 +1,12 @@
 package com.example.final_project;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
-
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
-import android.widget.Toolbar;
-
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Timer;
-import java.util.TimerTask;
-
 
 public class MainActivity extends BaseActivity {
     @Override
@@ -41,8 +22,6 @@ public class MainActivity extends BaseActivity {
         pagerAdapter.addFragment(new RegisterFragment());
 
         viewPager.setAdapter(pagerAdapter);
-
-
 
         // Sets the alarm for all the lessons on the system
         // on first app entrance
@@ -92,8 +71,4 @@ public class MainActivity extends BaseActivity {
             fragmentList.add(fragment);
         }
     }
-
-
-
-
 }
