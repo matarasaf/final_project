@@ -38,13 +38,13 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
 
     public SystemAdapter(Application application, Context context, Activity activity, String day) {
         myViewModel = MainViewModel.getInstance(application);
-        myViewModel.setDay(day); ///////////////
-        myViewModel.init(application); ////////////////
+        myViewModel.setDay(day);
+        myViewModel.init(application);
         lessonsList = myViewModel.getLessons().getValue();
         dataList = myViewModel.getData().getValue();
         this.context = context;
-        this.activity = activity;
-        this.day = day;
+        this.activity = activity; //////////////
+        this.day = day; //////////////////
 
         //observe data changes
         Observer<ArrayList<Lesson>> observeDataLessonChanges = new Observer<ArrayList<Lesson>>() {
@@ -130,13 +130,15 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         }
         context.deleteFile(lessonsList.get(position).getDay() + ".txt");
 
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(lessonsList.get(position).getDay() + ".txt", Context.MODE_PRIVATE));
-            outputStreamWriter.write(str.toString());
-            outputStreamWriter.flush();
-            outputStreamWriter.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(str.length() > 0) {
+            try {
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(lessonsList.get(position).getDay() + ".txt", Context.MODE_PRIVATE));
+                outputStreamWriter.write(str.toString());
+                outputStreamWriter.flush();
+                outputStreamWriter.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         dataList.remove(position);
@@ -192,6 +194,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
                 final int end_minute = tpEndTime.getMinute();
                 boolean attendance;
 
+
                 if(checkBox.isChecked())
                     attendance = true;
                 else
@@ -232,6 +235,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
     //inner class
     public class ViewHolder extends RecyclerView.ViewHolder{
         //The information on each raw item in the recycler
+
 
         private TextView tvProfession;
         private TextView tvStartTime;
@@ -302,3 +306,4 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
     }
 
 }
+
