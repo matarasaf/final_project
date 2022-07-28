@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class FileManager {
     public static ArrayList<String> getDataFromDb(Context context, String day) {
@@ -33,17 +34,26 @@ public class FileManager {
         return list;
     }
 
-    public static ArrayList<Lesson> getLessonsFromDb(ArrayList<String> dataList,String day) {
+    public static ArrayList<Lesson> getLessonsFromDb(ArrayList<String> dataList,String day,boolean includeOld) {
 
         ArrayList<Lesson> list = new ArrayList<>();
         String[] temp;
+
+        //for notification
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        //
 
         if(dataList != null) {
             for (int i = 0; i < dataList.size(); i++) {
                 temp = dataList.get(i).split(",");
                 if(temp.length<7)continue;
                 Lesson lesson = new Lesson(temp[0], temp[1], Integer.valueOf(temp[2]), Integer.valueOf(temp[3]), Integer.valueOf(temp[4]), Integer.valueOf(temp[5]), day, Boolean.valueOf(temp[6]));
-                list.add(lesson);
+                ///for notification
+                if (includeOld || (lesson.day.equals(lesson.getDayString(c.get(Calendar.DAY_OF_WEEK)))
+                        && lesson.startHour >= c.get(Calendar.HOUR_OF_DAY)
+                        && lesson.startMinute > c.get(Calendar.MINUTE)))
+                         list.add(lesson);
             }
         }
         return list;
