@@ -83,7 +83,7 @@ public class MainViewModel extends AndroidViewModel {
         positionSelected.setValue(-1);
 
         ArrayList<String> dataList = FileManager.getDataFromDb(application.getApplicationContext(),day);
-        ArrayList<Lesson> lessonList = FileManager.getLessonsFromDb(dataList,day);
+        ArrayList<Lesson> lessonList = FileManager.getLessonsFromDb(dataList,day,true);
 
         Collections.sort(lessonList);
         dataList = FileManager.sortStringDataList(lessonList);
