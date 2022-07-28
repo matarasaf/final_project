@@ -11,6 +11,54 @@ public class Lesson implements Comparable<Lesson> {
     int endMinute;
     boolean attendance;
 
+    public int getDayNum() {
+        int d = 0;
+        switch(getDay()){
+            case "Sunday":
+                d = 1;
+                break;
+            case "Monday":
+                d = 2;
+                break;
+            case  "Tuesday":
+                d = 3;
+                break;
+            case "Wednesday":
+                d = 4;
+                break;
+            case "Thursday":
+                d = 5;
+                break;
+            case "Friday":
+                d = 6;
+                break;
+        }
+        return d;
+    }
+    public String getDayString(int day) {
+        String d = "";
+        switch(day){
+            case 1:
+                d = "Sunday";
+                break;
+            case 2:
+                d = "Monday";
+                break;
+            case  3:
+                d = "Tuesday";
+                break;
+            case 4:
+                d = "Wednesday";
+                break;
+            case 5:
+                d = "Thursday";
+                break;
+            case 6:
+                d = "Friday";
+                break;
+        }
+        return d;
+    }
     public String getProfession() {
         return profession;
     }
