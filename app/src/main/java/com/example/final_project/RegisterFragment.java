@@ -29,9 +29,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private Button btnRegister;
     private ProgressBar progressBar;
 
-    /*public RegisterFragment() {
+    public RegisterFragment() {
         // Required empty public constructor
-    }*/
+    }
 
 
     @Override
@@ -68,7 +68,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     }
 
     private void registerUser() {
-        WeekFragment frag;
         String fullName = editTextFullName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
