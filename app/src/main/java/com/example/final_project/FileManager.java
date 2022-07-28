@@ -37,7 +37,7 @@ public class FileManager {
     public static ArrayList<Lesson> getLessonsFromDb(ArrayList<String> dataList,String day,boolean includeOld) {
 
         ArrayList<Lesson> list = new ArrayList<>();
-        String[] temp;
+        String[] temp = new String[7];
 
         //for notification
         Calendar c = Calendar.getInstance();
@@ -47,7 +47,6 @@ public class FileManager {
         if(dataList != null) {
             for (int i = 0; i < dataList.size(); i++) {
                 temp = dataList.get(i).split(",");
-                if(temp.length<7)continue;
                 Lesson lesson = new Lesson(temp[0], temp[1], Integer.valueOf(temp[2]), Integer.valueOf(temp[3]), Integer.valueOf(temp[4]), Integer.valueOf(temp[5]), day, Boolean.valueOf(temp[6]));
                 ///for notification
                 if (includeOld || (lesson.day.equals(lesson.getDayString(c.get(Calendar.DAY_OF_WEEK)))

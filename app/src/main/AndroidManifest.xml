@@ -31,6 +31,15 @@
             >
 
         </activity>
+<!--
+        <receiver android:name=".BatteryBroadcastReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+                <action android:name="android.intent.action.BATTERY_OKAY"/>
+            </intent-filter>
+        </receiver>-->
 
         <activity
             android:name=".SettingsActivity"

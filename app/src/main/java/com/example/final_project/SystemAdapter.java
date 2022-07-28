@@ -4,19 +4,19 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.text.TextUtils;
+import android.text.TextUtils; ///////////
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.View.OnClickListener; /////////////
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
+import android.widget.Button; ////////
+import android.widget.CheckBox; //////////////
+import android.widget.EditText; /////////////
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
+import android.widget.TimePicker; /////////////
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog; //////////////
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,8 +43,8 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         lessonsList = myViewModel.getLessons().getValue();
         dataList = myViewModel.getData().getValue();
         this.context = context;
-        this.activity = activity; //////////////
-        this.day = day; //////////////////
+        this.activity = activity;
+        this.day = day;
 
         //observe data changes
         Observer<ArrayList<Lesson>> observeDataLessonChanges = new Observer<ArrayList<Lesson>>() {
@@ -129,7 +129,6 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
             }
         }
         context.deleteFile(lessonsList.get(position).getDay() + ".txt");
-
         if(str.length() > 0) {
             try {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(lessonsList.get(position).getDay() + ".txt", Context.MODE_PRIVATE));
@@ -193,7 +192,6 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
                 final int end_hour = tpEndTime.getHour();
                 final int end_minute = tpEndTime.getMinute();
                 boolean attendance;
-
 
                 if(checkBox.isChecked())
                     attendance = true;
@@ -306,4 +304,3 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
     }
 
 }
-
