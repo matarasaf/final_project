@@ -22,6 +22,7 @@ public class NotificationAppManager {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context);
         Notification notification = notificationBuilder
                 .setChannelId(N_CHANNEL_ID)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setSmallIcon(R.drawable.ic_baseline_notifications_24)
                 .setContentText(message)
                 .build();
@@ -43,9 +44,9 @@ public class NotificationAppManager {
         intent.putExtra("lesson",lessonString);
         PendingIntent pendingIntent = PendingIntent
                 .getBroadcast(context,
-                100,intent,0);
+                0,intent,0);
 
-        //convert string day to integer day foe the using on calendar
+        //convert string day to integer day for the using on calendar
         int day = 0;
         switch(lesson.getDay()){
             case "Sunday":
@@ -79,7 +80,6 @@ public class NotificationAppManager {
         calendar.set(Calendar.SECOND, 0);
         //calendar.getTimeInMillis()- method returns this Calendar's time in milliseconds.
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pendingIntent);
-
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis() -1000*60 , pendingIntent);
     }
 }
