@@ -6,6 +6,8 @@ import android.content.Intent;
 
 import com.google.gson.Gson;
 
+import java.util.Calendar;
+
 public class LessonsBroadcastReceiver extends BroadcastReceiver {
 
     @Override
@@ -13,7 +15,16 @@ public class LessonsBroadcastReceiver extends BroadcastReceiver {
         //putExtra- allows us to save inside the Intent our information
         String lessonString = intent.getStringExtra("lesson");
         Lesson lesson = new Gson().fromJson(lessonString,Lesson.class);
+
+        //choose the right day
+        Calendar c =Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        //lesson needs to meet conditions
+        if((c.get(Calendar.DAY_OF_WEEK) != lesson.getDayNum()) )
+            return;
+
         NotificationAppManager.sendNotification(context,
-                "This is a reminder for a lesson" + lesson.getProfession() + "today at " + lesson.getStartHour());
+                "This is a reminder for a lesson " + lesson.getProfession() + " today at " + lesson.getStartHour()
+                    +":" + lesson.getStartMinute());
     }
 }
