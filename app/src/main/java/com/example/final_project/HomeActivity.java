@@ -29,13 +29,11 @@ public class HomeActivity extends BaseActivity implements WeekFragment.WeekFragm
         DayFragment frag;
         this.day = day;
         getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
                 .replace(R.id.fragContainer, DayFragment.class,null,"DAYFRAG")
-                .addToBackStack(null)
                 .commit();
-        try {
-            getSupportFragmentManager().executePendingTransactions();
-        }catch (IndexOutOfBoundsException e) { e.printStackTrace();}
+
+        getSupportFragmentManager().executePendingTransactions();
+
         frag = (DayFragment) getSupportFragmentManager().findFragmentByTag("DAYFRAG");
         frag.onNewClick(day);
     }
