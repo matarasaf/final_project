@@ -187,11 +187,11 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 //Get time from the time picker
-                final int start_hour = tpStartTime.getHour();
-                final int start_minute = tpStartTime.getMinute();
-                final int end_hour = tpEndTime.getHour();
-                final int end_minute = tpEndTime.getMinute();
-                boolean attendance;
+                 int start_hour = tpStartTime.getHour();
+                 int start_minute = tpStartTime.getMinute();
+                 int end_hour = tpEndTime.getHour();
+                 int end_minute = tpEndTime.getMinute();
+                 boolean attendance;
 
                 if(checkBox.isChecked())
                     attendance = true;
