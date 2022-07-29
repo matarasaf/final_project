@@ -149,7 +149,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
-        View view = inflater.inflate(R.layout.edit_layout, null);
+        View view = inflater.inflate(R.layout.add_layout, null);
 
         //Setting all the views
 
@@ -158,7 +158,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         TimePicker tpEndTime = (TimePicker) view.findViewById(R.id.timePicker_End);
         EditText etLocation = (EditText) view.findViewById(R.id.etLocation);
         TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
-        Button btnSubmit = (Button) view.findViewById(R.id.bSubmit);
+        Button btnSubmit = (Button) view.findViewById(R.id.bAdd);
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBox) ;
         tpStartTime.setIs24HourView(true);
         tpEndTime.setIs24HourView(true);
@@ -167,6 +167,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         etProfession.setText(ls.getProfession());
         etLocation.setText(ls.getLocation());
         checkBox.setChecked(ls.attendance);
+        btnSubmit.setText("Submit");
 
         tpStartTime.setHour(ls.startHour);
         tpStartTime.setMinute((ls.startMinute));
