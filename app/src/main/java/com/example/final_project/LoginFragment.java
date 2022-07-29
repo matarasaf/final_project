@@ -43,7 +43,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 

@@ -60,12 +60,9 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
         }
 
-
         SharedPreferences sharedPreferences = getSharedPreferences("FONT_SIZE", MODE_PRIVATE);
         //Changing and store the value in the shared preferences (font size)
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-
-
 
         seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -87,22 +84,16 @@ public class SettingsActivity extends AppCompatActivity {
                 }
                 startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
                 SettingsActivity.this.finish();
-
-
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
-
         });
-
 
         //Sign out from this FireBase instance, moving to the Authentication Activity and finish
         findViewById(R.id.button_LogOut).setOnClickListener(new View.OnClickListener() {
@@ -114,10 +105,5 @@ public class SettingsActivity extends AppCompatActivity {
                 SettingsActivity.this.finish();
             }
         });
-
     }
-
-
-
-
 }

@@ -24,7 +24,6 @@ public class LessonsBroadcastReceiver extends BroadcastReceiver {
             return;
 
         NotificationAppManager.sendNotification(context,
-                "This is a reminder for a lesson " + lesson.getProfession() + " today at " + lesson.getStartHour()
-                    +":" + lesson.getStartMinute());
+                "This is a reminder for a lesson " + lesson.getProfession() + " today at " + lesson.getStartTime());
     }
 }

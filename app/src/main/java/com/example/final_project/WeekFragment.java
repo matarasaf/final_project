@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.view.View.OnClickListener;
 
-
 public class WeekFragment extends Fragment implements OnClickListener {
     Button bSunday, bMonday, bTuesday, bWednesday, bThursday, bFriday;
     WeekFragmentListener listener;
@@ -26,7 +25,6 @@ public class WeekFragment extends Fragment implements OnClickListener {
         }
         super.onAttach(context);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

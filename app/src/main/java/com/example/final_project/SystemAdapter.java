@@ -1,22 +1,21 @@
 package com.example.final_project;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.text.TextUtils; ///////////
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener; /////////////
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button; ////////
-import android.widget.CheckBox; //////////////
-import android.widget.EditText; /////////////
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.TimePicker; /////////////
+import android.widget.TimePicker;
 
-import androidx.appcompat.app.AlertDialog; //////////////
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;

@@ -5,14 +5,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 
-
 import java.util.ArrayList;
-
-
 
 public class MainActivity extends BaseActivity {
     @Override
@@ -36,8 +32,6 @@ public class MainActivity extends BaseActivity {
         // on first app entrance
     }
 
-
-
     class AuthenticationPagerAdapter extends FragmentPagerAdapter {
         private ArrayList<Fragment> fragmentList = new ArrayList<>();
 
@@ -59,8 +53,4 @@ public class MainActivity extends BaseActivity {
             fragmentList.add(fragment);
         }
     }
-
-
-
-
 }
