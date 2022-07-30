@@ -6,17 +6,27 @@ import android.os.Bundle;
 
 public class HomeActivity extends BaseActivity implements WeekFragment.WeekFragmentListener{
     String day;
-    BatteryBroadcastReceiver receiver;
+    BatteryBroadcastReceiver receiver = new BatteryBroadcastReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        receiver = new BatteryBroadcastReceiver();
-        registerReceiver(receiver,new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-
         //Content View
         setContentView(R.layout.activity_home);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        registerReceiver(receiver,new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
     }
 
     @Override
