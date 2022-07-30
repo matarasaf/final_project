@@ -23,7 +23,8 @@ public class NotificationAppManager {
         Notification notification = notificationBuilder
                 .setChannelId(N_CHANNEL_ID)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                .setSmallIcon(R.drawable.ring)
+                .setContentTitle("Class is coming up")
                 .setContentText(message)
                 .build();
         notificationManager.notify(1,notification);
