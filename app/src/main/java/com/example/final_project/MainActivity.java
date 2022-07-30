@@ -32,8 +32,7 @@ public class MainActivity extends BaseActivity {
         Intent i = new Intent(this,NotificationsService.class);
         startService(i); //For notifications about classes with mandatory attendance
 
-        // Sets the alarm for all the lessons on the system
-        // on first app entrance
+
     }
 
 
