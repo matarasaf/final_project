@@ -35,18 +35,22 @@ public class NotificationsService extends Service {
         notificationManager.createNotificationChannel(channel);
     }
 
+    // The service is being created- creating channel
     @Override
     public void onCreate() {
         super.onCreate();
         createNotificationChannel();
     }
 
+
+    // The service is starting, due to a call to startService() in MainActinity.onCreate
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         setLessonsAlarms();
         return super.onStartCommand(intent, flags, startId);
     }
 
+    //start the service on the existing classes
     private void setLessonsAlarms(){
         // for each day of week set lesson alarms
         for(String day  : daysInWeek) {
