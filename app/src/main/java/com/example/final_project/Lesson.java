@@ -137,15 +137,4 @@ public class Lesson implements Comparable<Lesson> {
         else str = str + getStartMinute();
         return str;
     }
-
-   /* @Override
-    public boolean equals(Object obj) {
-        Lesson other = (Lesson) obj;
-        if((other.getAttendance() == this.getAttendance()) && (other.getStartMinute() == this.getStartMinute())
-        && (other.getStartHour() == this.getStartHour()) && (other.getEndHour() == this.getEndHour())
-        && (other.getEndMinute() == this.getEndMinute()) && (this.getDay().equals(other.getDay()))
-        && (this.getLocation().equals(other.getLocation())) && (this.getProfession().equals(other.getProfession())))
-            return true;
-        return false;
-    }*/
 }
