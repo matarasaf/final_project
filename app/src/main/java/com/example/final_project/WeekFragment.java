@@ -14,6 +14,7 @@ public class WeekFragment extends Fragment implements OnClickListener {
     Button bSunday, bMonday, bTuesday, bWednesday, bThursday, bFriday;
     WeekFragmentListener listener;
 
+    //Called when a fragment is first attached to its context.
     @Override
     public void onAttach(@NonNull Context context) {
         try{
