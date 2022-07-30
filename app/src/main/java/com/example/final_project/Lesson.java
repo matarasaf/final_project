@@ -100,6 +100,7 @@ public class Lesson implements Comparable<Lesson> {
         this.attendance = attendance;
     }
 
+    //compareTo function execute comparing between start time of lesson for the order of them in fragment day
     @Override
     public int compareTo(Lesson other) {
         int temp;
