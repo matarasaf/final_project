@@ -225,10 +225,14 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
     }
 
 
+    //getItemCount() - returns The number of items(classes) currently available in adapter
     @Override
     public int getItemCount() {
         return lessonsList.size();
     }//Recycler items count
+
+
+
 
     //inner class
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -254,6 +258,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
             row_RelativeLayout = itemView.findViewById(R.id.system_item);
         }
 
+        //show the relevant data for specific lesson
         public void bindData( Lesson lesson){
 
             tvProfession.setText("Profession: " + lesson.getProfession());
