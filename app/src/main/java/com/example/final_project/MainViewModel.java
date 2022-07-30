@@ -84,29 +84,41 @@ public class MainViewModel extends AndroidViewModel {
 
 
     public void addNewLesson(Context context,Lesson newLesson) {
+        //getting lessonList and dataList update
         ArrayList<Lesson> lessonsList = getLessons().getValue();
         ArrayList<String> dataList = getData().getValue();
+
+        //lessonData contain all the details of lesson
         String lessonData = newLesson.getProfession() + "," + newLesson.getLocation() + "," + newLesson.getStartHour() + "," + newLesson.getStartMinute() + "," + newLesson.getEndHour() + "," + newLesson.getEndMinute() + "," + newLesson.getAttendance() + "\n";
         StringBuilder data = new StringBuilder();
         int index;
 
         try {
+            //open the relevant day file in according to function newLesson.getDay()
             InputStream inputStream = context.openFileInput(newLesson.getDay() + ".txt");
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+
+                //inputStream.available() method is used to return the number of available bytes left
+                // for reading from this InputStream without blocking by the next call
+                // of the method from this InputStream.
                 int size = inputStream.available();
                 char[] buffer = new char[size];
                 inputStreamReader.read(buffer);
                 inputStream.close();
                 String temp = new String(buffer);
+
+                //adding temp string to data builder
                 data.append(temp);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        //adding lessonData to data builder
         data.append(lessonData);
 
+        //writing data builder to the day file
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(newLesson.getDay() + ".txt", Context.MODE_PRIVATE));
             outputStreamWriter.write(data.toString());
@@ -116,15 +128,20 @@ public class MainViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
 
-        if(newLesson.getAttendance())
-            NotificationAppManager.setLessonNotification(context,newLesson);
-
         lessonsList.add(newLesson);
         Collections.sort(lessonsList);
         index = lessonsList.indexOf(newLesson);
+        //adding tne newLesson to the right place in the list by index
         dataList.add(index, lessonData);
 
+        //update LessonLiveData and DataLiveData
         setLessonLiveData(lessonsList);
         setDataLiveData(dataList);
+
+        //if the lesson have mandatory attendance create noification in the right time
+        if(newLesson.getAttendance()) {
+            NotificationAppManager.setLessonNotification(context, newLesson);
+        }
+
     }
 }
