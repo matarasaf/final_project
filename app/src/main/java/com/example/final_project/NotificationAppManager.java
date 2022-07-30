@@ -36,7 +36,7 @@ public class NotificationAppManager {
      */
     public static void setLessonNotification(Context context, Lesson lesson) {
 
-        // transform the lesson to a string
+        // transform the lesson to a strings of values of lesson
         String lessonString = new Gson().toJson(lesson);
         // intent for the alarm manager broadcast receiver
         // pass the lesson to the pending intent
