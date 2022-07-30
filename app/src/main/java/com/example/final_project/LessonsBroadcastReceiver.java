@@ -13,14 +13,12 @@ public class LessonsBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
         //getExtra-get the information about the class we need
         //Gson()- convert from string to lesson object
 
         String lessonString = intent.getStringExtra("lesson");
         Lesson lesson = new Gson().fromJson(lessonString,Lesson.class);
-
-
-
 
         //choose the right day
         Calendar c =Calendar.getInstance();
@@ -28,7 +26,6 @@ public class LessonsBroadcastReceiver extends BroadcastReceiver {
         //lesson needs to meet conditions
         if((c.get(Calendar.DAY_OF_WEEK) != lesson.getDayNum()) )
             return;
-
 
         NotificationAppManager.sendNotification(context,
                 "This is a reminder for a lesson " + lesson.getProfession() + " today at " + lesson.getStartHour()

@@ -63,16 +63,8 @@ public class Lesson implements Comparable<Lesson> {
         return profession;
     }
 
-    public void setProfession(String profession) {
-        this.profession = profession;
-    }
-
     public String getLocation() {
         return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public int getStartHour() {
@@ -83,14 +75,6 @@ public class Lesson implements Comparable<Lesson> {
         return startMinute;
     }
 
-    public void setStartHour(int startHour) {
-        this.startHour = startHour;
-    }
-
-    public void setStartMinute(int startMinute) {
-        this.startMinute = startMinute;
-    }
-
     public int getEndHour() {
         return endHour;
     }
@@ -99,24 +83,8 @@ public class Lesson implements Comparable<Lesson> {
         return endMinute;
     }
 
-    public void setEndHour(int endHour) {
-        this.endHour = endHour;
-    }
-
-    public void setEndMinute(int endMinute) {
-        this.endMinute = endMinute;
-    }
-
     public String getDay() {
         return day;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public void setAttendance(boolean attendance) {
-        this.attendance = attendance;
     }
 
     public boolean getAttendance() { return attendance; }
@@ -157,5 +125,16 @@ public class Lesson implements Comparable<Lesson> {
 
         //start time and end time equal
         return 0;
+    }
+
+    public String getStartTime(){
+        String str = "";
+        if(getStartHour() < 10)
+            str = str + "0" + getStartHour() + ":";
+        else str = str + getStartHour() + ":";
+        if (getStartMinute() < 10)
+            str = str + "0" + getStartMinute();
+        else str = str + getStartMinute();
+        return str;
     }
 }

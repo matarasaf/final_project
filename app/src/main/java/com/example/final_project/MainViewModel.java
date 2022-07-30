@@ -82,7 +82,6 @@ public class MainViewModel extends AndroidViewModel {
     }
 
 
-
     public void addNewLesson(Context context,Lesson newLesson) {
         //getting lessonList and dataList update
         ArrayList<Lesson> lessonsList = getLessons().getValue();

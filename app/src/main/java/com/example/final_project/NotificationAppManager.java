@@ -30,7 +30,6 @@ public class NotificationAppManager {
     }
 
 
-
     /*
            Sets a notification timer for a lesson
      */

@@ -1,22 +1,21 @@
 package com.example.final_project;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.text.TextUtils; ///////////
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener; /////////////
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button; ////////
-import android.widget.CheckBox; //////////////
-import android.widget.EditText; /////////////
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.TimePicker; /////////////
+import android.widget.TimePicker;
 
-import androidx.appcompat.app.AlertDialog; //////////////
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
@@ -150,7 +149,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = activity.getLayoutInflater();
-        View view = inflater.inflate(R.layout.edit_layout, null);
+        View view = inflater.inflate(R.layout.add_layout, null);
 
         //Setting all the views
 
@@ -159,7 +158,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         TimePicker tpEndTime = (TimePicker) view.findViewById(R.id.timePicker_End);
         EditText etLocation = (EditText) view.findViewById(R.id.etLocation);
         TextView tvAlert = (TextView) view.findViewById(R.id.tvAlert);
-        Button btnSubmit = (Button) view.findViewById(R.id.bSubmit);
+        Button btnSubmit = (Button) view.findViewById(R.id.bAdd);
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBox) ;
         tpStartTime.setIs24HourView(true);
         tpEndTime.setIs24HourView(true);
@@ -168,6 +167,7 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
         etProfession.setText(ls.getProfession());
         etLocation.setText(ls.getLocation());
         checkBox.setChecked(ls.attendance);
+        btnSubmit.setText("Submit");
 
         tpStartTime.setHour(ls.startHour);
         tpStartTime.setMinute((ls.startMinute));
@@ -187,11 +187,11 @@ public class SystemAdapter extends RecyclerView.Adapter<SystemAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 //Get time from the time picker
-                final int start_hour = tpStartTime.getHour();
-                final int start_minute = tpStartTime.getMinute();
-                final int end_hour = tpEndTime.getHour();
-                final int end_minute = tpEndTime.getMinute();
-                boolean attendance;
+                 int start_hour = tpStartTime.getHour();
+                 int start_minute = tpStartTime.getMinute();
+                 int end_hour = tpEndTime.getHour();
+                 int end_minute = tpEndTime.getMinute();
+                 boolean attendance;
 
                 if(checkBox.isChecked())
                     attendance = true;

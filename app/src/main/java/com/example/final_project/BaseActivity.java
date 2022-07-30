@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 abstract public class BaseActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,14 +64,12 @@ abstract public class BaseActivity extends AppCompatActivity {
                             }
                     )
                     .create();
-
         }
     }
 
     public static void doPositiveClick() {
         System.exit(0);
     }
-
 
     public static void doNegativeClick(DialogInterface dialog) {
         dialog.dismiss();
@@ -104,8 +100,6 @@ abstract public class BaseActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 
     //update settings- change font size
     //overridePendingTransition call immediately after finish()/startActivity() function

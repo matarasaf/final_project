@@ -19,7 +19,6 @@ public class NotificationsService extends Service {
             "Wednesday",
             "Thursday",
             "Friday"
-
     };
 
     public static final String N_CHANNEL_ID = "MY_CHANNEL";

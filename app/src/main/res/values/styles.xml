@@ -18,7 +18,6 @@
     <!-- SMALL FONT SIZE -->
     <style name="small_text" parent="AppTheme">
         <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
 
